@@ -252,7 +252,13 @@ class="content">Difference from existing features</span></a>
    <p>When change arises to the scale of contents by the zoom function which a user agent has, or change of CSS3 Transforms, media query with zoom media features can provide the responsible contents concerning zooming. In addition to control of a style sheet, the application to elements which can have media attributes such as <a href="http://www.w3.org/html/wg/drafts/html/master/semantics.html#the-source-element-when-used-with-the-picture-element">source</a> element etc. is also taken into consideration. </p>
 
    <h2 class="heading settled" data-level="2" id="usecase"><span class="secno">2. </span><span class="content">Use case</span><a class="self-link" href="#usecase"></a></h2>
+   <p>Mappingや超解像度写真などの、
 
+けれども、Webアプリケーションとしてそれを作るには、マッシブなJSが必要である。それがこういったコンテンツの作成を妨げている。
+
+メタズームを設定すれば、コンテンツに対して、幅やズームの設定することはできるものの、ズームに応じたコンテンツや表現の切り替えを提供することはできない。
+
+このスペックは、これを実現することを目的としている。
    <p>PageZoomをしていくと単純にガタガタになる。
    <a href="https://www.google.com/maps/@37.0625,-95.677068,4z">Google Maps</a>
 
@@ -336,36 +342,6 @@ CSSやSVGではドキュメントルートの子要素に対してtransformプ�
   
   <p>The<code class="css">zoom</code> media feature corresponds to <a href="https://drafts.csswg.org/cssom-view/#zooming"><code>pinch zoom</code></a> described on <a href="#biblio-cssom-view">[CSSOM VIEW]</a>. ただし、その名前は、それと同じ意味を示す、<a href="#biblio-css-device-adapt">[CSS-DEVICE-ADAPT]</a>の<a href="http://www.w3.org/TR/css-device-adapt/#the-lsquozoomrsquo-property"><code class="css">zoom</code></a>に整合させるため、<code class="css">zoom</code>である。</p>
 
-<!--
-  <h3 class="heading settled" data-level="5.2" id="page-zoom"><span class="secno">3.2 </span><span class="content">page-zoom</span><a class="self-link" href="#page-zoom"></a></h3>
-   
-  <div class="media-feature"><span class="label">Value:</span> <a href="http://www.w3.org/TR/css3-values/#percentage">&lt;percentage&gt;</a>,<a href="http://www.w3.org/TR/css3-values/#number-value">&lt;numnber&gt;</a><br>
-   <span class="label">Applies to:</span> visual and tactile media types<br>
-   <span class="label">Accepts min/max prefixes:</span> yes<br>
-  </div>
-  
-  <p>The<code class="css">page-zoom</code> media feature corresponds to <a href="https://drafts.csswg.org/cssom-view/#zooming"><code>pageZoom</code></a> described on <a href="#biblio-cssom-view">[CSSOM VIEW]</a>.</p>
-
-
-  <h3 class="heading settled" data-level="5.3" id="ua-zoom"><span class="secno">3.3 </span><span class="content">ua-zoom</span><a class="self-link" href="#ua-zoom"></a></h3>
-
-  <div class="media-feature"><span class="label">Value:</span> <a href="http://www.w3.org/TR/css3-values/#percentage">&lt;percentage&gt;</a>,<a href="http://www.w3.org/TR/css3-values/#number-value">&lt;numnber&gt;</a><br>
-   <span class="label">Applies to:</span> visual and tactile media types<br>
-   <span class="label">Accepts min/max prefixes:</span> yes<br>
-  </div>
-
-  <p>The<code class="css">ua-zoom</code> media feature corresponds to multiplication of <a href="https://drafts.csswg.org/cssom-view/#zooming"><code>pageZoom</code></a> and <a href="https://drafts.csswg.org/cssom-view/#zooming"><code>pinchZoom</code></a> . それはUAが持つズーム機能全体の総合値となる。</p>
-
-  <h3 class="heading settled" data-level="5.4" id="ua-zoom-dot"><span class="secno">5.4 </span><span class="content">ua-zoom-dot</span><a class="self-link" href="#ua-zoom-dot"></a></h3>
-  
-  <div class="media-feature"><span class="label">Value:</span> <a href="http://www.w3.org/TR/css3-values/#percentage">&lt;percentage&gt;</a>,<a href="http://www.w3.org/TR/css3-values/#number-value">&lt;numnber&gt;</a><br>
-   <span class="label">Applies to:</span> visual and tactile media types<br>
-   <span class="label">Accepts min/max prefixes:</span> yes<br>
-  </div>
-
-  <p>The<code class="css">ua-zoom-dot</code> media feature corresponds to multiplication of <a href="https://drafts.csswg.org/cssom-view/#zooming"><code>pageZoom</code></a>, <a href="https://drafts.csswg.org/cssom-view/#zooming"><code>pinchZoom</code></a> and <a href="http://www.w3.org/TR/css3-values/#resolution"><code class="css">resolution</code></a> in <a href="http://www.w3.org/TR/css3-values/#dppx">dppx</a> . それは、dppxでの<code class="css">resolution</code>すなわち<a href="https://drafts.csswg.org/cssom-view/#dom-window-devicepixelratio">devicePixelRatio</a>を加味した、デバイスのドットに対する、ua-zoomに相当する値となる。</p>
-
--->
 
   <h3 class="heading settled" data-level="5.2" id="zoom-dot"><span class="secno">5.2 </span><span class="content">zoom-dot</span><a class="self-link" href="#zoom-dot"></a></h3>
   
