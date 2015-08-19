@@ -215,26 +215,18 @@ a#bikeshed.pending [fill=blue] { animation-name: fill; } --></style></head>
     <li><a href="#intro"><span class="secno">1</span> <span class="content">Introduction</span></a>
     <li><a href="#usecase"><span class="secno">2</span> <span class="content">Use case</span></a>
     <li><a href="#diff-existing"><span class="secno">3</span> <span 
-class="content">Difference from existing features</span></a>
-    <li><a href="#zooming-behaviors"><span class="secno">4</span> <span class="content">Behaviors of zooming of contents</span></a>
+class="content">Difference between existing features and zoom features</span></a>
+    <li><a href="#zooming-behaviors"><span class="secno">4</span> <span class="content">Possible zooming types</span></a>
     <ul class="toc">
      <li><a href="#embed-content-scale"><span class="secno">4.1</span> <span class="content">Scale of Embedded Content</span></a>
     </ul>
-    <li><a href="#possible-zoom-types"><span class="secno">5</span> <span class="content">Possible zoom types</span></a>
+    
+    <li><a href="#zoom-media-features"><span class="secno">6</span> <span class="content">Zoom media features</span></a>
     <ul class="toc">
      <li><a href="#zoom"><span class="secno">5.1</span><span class="content">zoom</span></a>
-     <!--
-     <li><a href="#page-zoom"><span class="secno">5.2</span><span class="content">page-zoom</span></a>
-     <li><a href="#ua-zoom"><span class="secno">5.3</span><span class="content">ua-zoom</span></a>
-     -->
-     <li><a href="#zoom-dot"><span class="secno">5.2</span><span class="content">zoom-dot</span></a>
      <li><a href="#document-zoom"><span class="secno">5.3</span><span class="content">document-zoom</span></a>
-     <li><a href="#document-zoom-dot"><span class="secno">5.4</span><span class="content">document-zoom-dot</span></a>
-     <li><a href="#document-scale"><span class="secno">5.5</span><span class="content">document-scale</span></a>
-     <li><a href="#window-scale"><span class="secno">5.6</span><span class="content">window-scale</span></a>
     </ul>
-    <li><a href="#zoom-media-features"><span class="secno">6</span> <span class="content">Zoom media features</span></a>
-
+    
     <li><a href="#references"><span class="secno"></span> <span class="content">References</span></a>
      <ul class="toc">
       <li><a href="#normative"><span class="secno"></span> <span class="content">Normative References</span></a>
@@ -252,20 +244,16 @@ class="content">Difference from existing features</span></a>
    <p>When change arises to the scale of contents by the zoom function which a user agent has, or change of CSS3 Transforms, media query with zoom media features can provide the responsible contents concerning zooming. In addition to control of a style sheet, the application to elements which can have media attributes such as <a href="http://www.w3.org/html/wg/drafts/html/master/semantics.html#the-source-element-when-used-with-the-picture-element">source</a> element etc. is also taken into consideration. </p>
 
    <h2 class="heading settled" data-level="2" id="usecase"><span class="secno">2. </span><span class="content">Use case</span><a class="self-link" href="#usecase"></a></h2>
-   <p>Mappingや超解像度写真などの、
+   <p>マッピングや超解像度写真などのアプリケーションにおいては、ユーザによる拡大/縮小操作に応じたコンテンツや表現の切り替えが必要となる。
 
-けれども、Webアプリケーションとしてそれを作るには、マッシブなJSが必要である。それがこういったコンテンツの作成を妨げている。
+   <p>けれども、Webアプリケーションとしてそれを作るには、マッシブなJSが必要である。それがこうしたコンテンツの作りやすさを下げている。
 
-メタズームを設定すれば、コンテンツに対して、幅やズームの設定することはできるものの、ズームに応じたコンテンツや表現の切り替えを提供することはできない。
+   <p>Viewport meta tagを利用することにより、コンテンツに対して、幅やズーム率を設定して初期のレイアウトをセットすることはできるものの、ユーザの操作などにより変わるズーム率に応じて、動的なコンテンツ表現を提供することは実現できない。
 
-このスペックは、これを実現することを目的としている。
-   <p>PageZoomをしていくと単純にガタガタになる。
-   <a href="https://www.google.com/maps/@37.0625,-95.677068,4z">Google Maps</a>
+   <p>本スペックは、これを実現することを目的としている。
 
-   <p>PinchZoomをしていく単純にガタガタになる。
-   <a href="https://developers.google.com/maps/documentation/embed/guide"> Google Maps Embed API</a>
 
-   <h2 class="heading settled" data-level="3" id="diff-exisiting"><span class="secno">3. </span><span class="content">Diffence from existing features</span><a class="self-link" href="#diff-existing"></a></h2>
+   <h2 class="heading settled" data-level="3" id="diff-exisiting"><span class="secno">3. </span><span class="content">Difference between existing features and zoom features</span><a class="self-link" href="#diff-existing"></a></h2>
 
 
 <p><ul>
@@ -273,7 +261,7 @@ class="content">Difference from existing features</span></a>
    <a href=http://www.w3.org/TR/mediaqueries-4/#resolution> <code class="css">resolution</code> media features</a> 
   </li>
   <dl>
-    resolution reflects page zoom. This feature doesn't reflect magnification such as pinch zoom.
+    resolution media featureは、UAにおけるpage zoomは影響を与える一方で、pinch zoomは影響を与えない。
   </dl>
   <br><br>
   <li>
@@ -284,9 +272,9 @@ class="content">Difference from existing features</span></a>
     </dl>
 </ul>
 
-   <h2 class="heading settled" data-level="4" id="zooming-behaviors"><span class="secno">4. </span><span class="content">Behaviors of zooming of contents </span><a class="self-link" href="#zooming-behaviors"></a></h2>
+   <h2 class="heading settled" data-level="4" id="zooming-behaviors"><span class="secno">4. </span><span class="content">Possible zooming types </span><a class="self-link" href="#zooming-behaviors"></a></h2>
 
-<p><em>This sction is non normative.</em>
+<p><em>This section is non normative.</em>
 ユーザエージェントがスクリーンデバイスを持つ場合、そのデバイスのドットのサイズに対して、ドキュメントルートのユーザ座標系におけるサイズには、以下の式が成立する。
 </p>
 
@@ -326,12 +314,10 @@ CSSやSVGではドキュメントルートの子要素に対してtransformプ�
 </p>
 
 
-   <h2 class="heading settled" data-level="5" id="possible-zoom-types"><span class="secno">5. </span><span class="content">Possible zoom types</span><a class="self-link" href="#zoom-media-features"></a></h2>
-<p><em>This section is not normative.</em>
+   <h2 class="heading settled" data-level="5" id="zoom-media-features"><span class="secno">5. </span><span class="content">Zoom media features </span><a class="self-link" href="#zoom-media-features"></a></h2>
 <p>
 前章に示した式に対し、以下のzoom media featuresが規定される。それらは、先述の式の特定の項、もしくは特定の項の組み合わせに対して、それをfeatureと定めたものである。
 </p>
-
 
   <h3 class="heading settled" data-level="5.1" id="zoom"><span class="secno">5.1 </span><span class="content">zoom</span><a class="self-link" href="#zoom"></a></h3>
    
@@ -343,18 +329,9 @@ CSSやSVGではドキュメントルートの子要素に対してtransformプ�
   <p>The<code class="css">zoom</code> media feature corresponds to <a href="https://drafts.csswg.org/cssom-view/#zooming"><code>pinch zoom</code></a> described on <a href="#biblio-cssom-view">[CSSOM VIEW]</a>. ただし、その名前は、それと同じ意味を示す、<a href="#biblio-css-device-adapt">[CSS-DEVICE-ADAPT]</a>の<a href="http://www.w3.org/TR/css-device-adapt/#the-lsquozoomrsquo-property"><code class="css">zoom</code></a>に整合させるため、<code class="css">zoom</code>である。</p>
 
 
-  <h3 class="heading settled" data-level="5.2" id="zoom-dot"><span class="secno">5.2 </span><span class="content">zoom-dot</span><a class="self-link" href="#zoom-dot"></a></h3>
-  
-  <div class="media-feature"><span class="label">Value:</span> <a href="http://www.w3.org/TR/css3-values/#percentage">&lt;percentage&gt;</a>,<a href="http://www.w3.org/TR/css3-values/#number-value">&lt;number&gt;</a><br>
-   <span class="label">Applies to:</span> visual and tactile media types<br>
-   <span class="label">Accepts min/max prefixes:</span> yes<br>
-  </div>
-
-  <p>The<code class="css">zoom-dot</code> media feature corresponds to multiplication of  <a href="https://drafts.csswg.org/cssom-view/#zooming"><code>pinchZoom</code></a> and <a href="http://www.w3.org/TR/css3-values/#resolution"><code class="css">resolution</code></a> in <a href="http://www.w3.org/TR/css3-values/#dppx">dppx</a> . それは、dppxでの<code class="css">resolution</code>すなわち<a href="https://drafts.csswg.org/cssom-view/#dom-window-devicepixelratio">devicePixelRatio</a>を加味した、デバイスのドットに対する、zoomに相当する値となる。</p>
 
 
-
-  <h3 class="heading settled" data-level="5.3" id="document-zoom"><span class="secno">5.3 </span><span class="content">document-zoom</span><a class="self-link" href="#document-zoom"></a></h3>
+  <h3 class="heading settled" data-level="5.2" id="document-zoom"><span class="secno">5.2 </span><span class="content">document-zoom</span><a class="self-link" href="#document-zoom"></a></h3>
 
   <div class="media-feature"><span class="label">Value:</span> <a href="http://www.w3.org/TR/css3-values/#percentage">&lt;percentage&gt;</a>,<a href="http://www.w3.org/TR/css3-values/#number-value">&lt;number&gt;</a><br>
    <span class="label">Applies to:</span> visual and tactile media types<br>
@@ -363,35 +340,7 @@ CSSやSVGではドキュメントルートの子要素に対してtransformプ�
   <p><code>PinchZoom * (embedContentScale(root)) * .... * (embedContentScale(parent))</code>に相当する。すなわち、media queryのターゲットとなるのdocumentの、CSS Pixelの世界における、Uaser AgentのWindowに対するzoomを表す。User Agentが持つzoom機能が加味される。</p>
 
 
-  <h3 class="heading settled" data-level="5.4" id="document-zoom-dot"><span class="secno">5.4 </span><span class="content">document-zoom-dot</span><a class="self-link" href="#document-zoom-dot"></a></h3>
-
-  <div class="media-feature"><span class="label">Value:</span> <a href="http://www.w3.org/TR/css3-values/#percentage">&lt;percentage&gt;</a>,<a href="http://www.w3.org/TR/css3-values/#number-value">&lt;number&gt;</a><br>
-   <span class="label">Applies to:</span> visual and tactile media types<br>
-   <span class="label">Accepts min/max prefixes:</span> yes<br>
-  </div>
-
-  <p><code>resolution[dppx] * PinchZoom * (embedContentScale(root)) * .... * (embedContentScale(parent))</code>に相当する。すなわち、resplitionが加味された、document-zoomである。これは前章に記述した式の全てのscaleとzoomファクター項の積である。</p>
-
-  <h3 class="heading settled" data-level="5.5" id="document-scale"><span class="secno">5.5 </span><span class="content">document-scale</span><a class="self-link" href="#document-scale"></a></h3>
-
-  <div class="media-feature"><span class="label">Value:</span> <a href="http://www.w3.org/TR/css3-values/#percentage">&lt;percentage&gt;</a>,<a href="http://www.w3.org/TR/css3-values/#number-value">&lt;number&gt;</a><br>
-   <span class="label">Applies to:</span> visual and tactile media types<br>
-   <span class="label">Accepts min/max prefixes:</span> yes<br>
-  </div>
-  <p><code>embedContentScale(parent)</code>に相当する。すなわち、media queryのターゲットとなるのdocumentの、親のdocumentから、そのdocumentのroot要素に対するtransformから求められるscaleである。ターゲットとなるdocumentが親のdocumentを持たない場合、その値は１である。</p>
-
-  <h3 class="heading settled" data-level="5.6" id="window-scale"><span class="secno">5.6 </span><span class="content">window-scale</span><a class="self-link" href="#window-scale"></a></h3>
-
-  <div class="media-feature"><span class="label">Value:</span> <a href="http://www.w3.org/TR/css3-values/#percentage">&lt;percentage&gt;</a>,<a href="http://www.w3.org/TR/css3-values/#number-value">&lt;number&gt;</a><br>
-   <span class="label">Applies to:</span> visual and tactile media types<br>
-   <span class="label">Accepts min/max prefixes:</span> yes<br>
-  </div>
-  <p><code>(embedContentScale(root)) * .... * (embedContentScale(parent))</code>に相当する。すなわち、media queryのターゲットとなるのdocumentの、CSS Pixelの世界における、Uaser AgentのWindowに対するscaleを表す。User Agentが持つzoom機能は加味されない。</p>
-
-
-   <h2 class="heading settled" data-level="6" id="zoom-media-features"><span class="secno">6. </span><span class="content">Zoom media features </span><a class="self-link" href="#zoom-media-features"></a></h2>
-
-
+<br><br>
 <h2 class="no-num heading settled" id="acknowledgments"><span class="content">Acknowledgments</span><a class="self-link" href="#acknowledgments"></a></h2>
 
   <p>This specification is the product of the W3C Working Group on Cascading
