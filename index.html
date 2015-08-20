@@ -282,12 +282,12 @@ class="content">Difference between existing features and zoom features</span></a
 
    <h2 class="heading settled" data-level="4" id="zooming-behaviors"><span class="secno">4. </span><span class="content">Possible zooming types </span><a class="self-link" href="#zooming-behaviors"></a></h2>
 
-<p><em>This section is non normative.</em>
-ユーザエージェントがスクリーンデバイスを持つ場合、そのデバイスのドットのサイズに対して、ドキュメントルートのユーザ座標系におけるサイズには、以下の式が成立する。
+<p><em>This sction is non normative.</em>
+この章は、User Agentと、そこで表示されるウェブコンテンツにおいて、考えられ得る様々なzoomの概念を整理する。User Agentにはpinch zoomやpage zoomといったズーミング機能がネイティブに備わっているかもしれない。また、devicePixelRatioとして現れるように、CSS pixelとデバイスのピクセル(dot)は同じサイズではないかもしれない。さらに、ウェブコンテンツは、時として、iframeなどによって、入れ子状になることがある。このような入れ子状のコンテンツにおいて、CSS Transformsが与えられた場合、子供のドキュメントのCSS Pixelの単位サイズは、親のそれと異なるかもしれない。これらの、コンテンツのサイズを変化させるパラメータたちは、いずれも"ズーム"の概念に含まれ得る。そこで、これらのパラメータが全て導入された式を以下に示す。この式はユーザエージェントがスクリーンデバイスを持つ場合、そのデバイスのドットのサイズに対して、ドキュメントルートのユーザ座標系におけるサイズとの間の関係を示す式である。
 </p>
 
 <p>
-<code>deviceDotSize = resolution[dppx] * PinchZoom * (embedContentScale(root)) * .... * (embedContentScale(parent)) * contentSize</code>
+<code>deviceDotSize = resolution[dppx] * PinchZoom * DocumentScale(child) * .... * DocumentScale(this) * contentSize</code>
 </p>
 <p>
 <code>resolution[dppx] = nativeResolution * PageZoom</code>
@@ -303,8 +303,8 @@ class="content">Difference between existing features and zoom features</span></a
  <dd><a href="#biblio-cssom-view">[CSSOM-VIEW]</a>の<a href="http://dev.w3.org/csswg/cssom-view/#zooming">zooming</a>に説明された、PageZoomである。
  <dt>PinchZoom</dt>
  <dd><a href="#biblio-cssom-view">[CSSOM-VIEW]</a>の<a href="http://dev.w3.org/csswg/cssom-view/#zooming">zooming</a>に説明された、PinchZoomである。
- <dt>embedContentScale</dt>
- <dd>もしも、メディアクエリのターゲットとなるコンテンツが、HTMLやSVGのembedded content (<a href="http://www.w3.org/TR/html5/embedded-content-0.html">HTMLEmbedded Content</a>, <a href="http://www.w3.org/TR/SVG2/embedded.html">SVG Embedded Content</a>)を用いた入れ子のコンテンツである場合に、embedded contentのための要素における、子供のコンテンツへのtransformsから発生するscale値。入れ子の段数だけそれらは連結される。</dd>
+ <dt>DocumentScale</dt>
+ <dd>もしも、メディアクエリのターゲットとなるコンテンツが、HTMLやSVGのembedded content (<a href="http://www.w3.org/TR/html5/embedded-content-0.html">HTMLEmbedded Content</a>, <a href="http://www.w3.org/TR/SVG2/embedded.html">SVG Embedded Content</a>)を用いた入れ子のコンテンツである場合に、embedded contentのための要素における、子供のコンテンツへのtransformsから発生するscale値。入れ子の段数だけそれらは連結される。(child)はルートのドキュメントから子供のドキュメンへのtransformから生成されるscaleである。DocumentScale(this)は、最も子孫のドキュメント(これをthisを称する)のその親のドキュメントからそのドキュメントへのscaleである。</dd>
  
  <dt>nativeResolution</dt>
  <dd>PageZoomが1.0のときのresolutionである</dd>
@@ -318,8 +318,54 @@ class="content">Difference between existing features and zoom features</span></a
    <h3 class="heading settled" data-level="4.1" id="embed-content-scale"><span class="secno">4.1 </span><span class="content">Scale of Embedded Content</span><a class="self-link" href="#embed-content-scale"></a></h3>
 <p> 親のコンテンツにおけるembedded contentのための要素が持つ<a href="http://www.w3.org/TR/css3-transforms/#current-transformation-matrix-ctm">CTM</a> や、<a href="#svg2">[SVG2]</a>における<a href="http://www.w3.org/TR/SVG2/coords.html#EstablishingANewSVGViewport">viewport establishment</a> processにおける暗黙のtransformationによって、親のコンテンツの座標系から、このコンテンツへの座標系への(<a href="#biblio-css-transforms">[CSS-TRANSFORMS]</a>)が定まります。そのtransform matrixから求められる<a href="http://svg2.mbsrv.net/devinfo/devstd/CSS_Transforms_Diff/css3Transforms_tmp/css-transforms-2_tmp/#scale">scale</a> (<a href="#biblio-css-transforms-2">[CSS-TRANSFORMS-2]</a>)が、この値です。</p>
 <p>
-CSSやSVGではドキュメントルートの子要素に対してtransformプロパティを設置することができます。しかし、ここに示すembedContentScaleは、あくまでも親の文書に対する、そのドキュメントルートのtransformationに基づく値でしかありません。それは、media queryがドキュメントを取り巻く外側のコンディションに対するクエリであるという特性に起因します。
+CSSやSVGではドキュメントルートの子要素に対してtransformプロパティを設置することができます。しかし、ここに示すDocumentScaleは、あくまでも親の文書に対する、そのドキュメントルートのtransformationに基づく値でしかありません。それは、media queryがドキュメントを取り巻く外側のコンディションに対するクエリであるという特性に起因します。
 </p>
+
+   <h3 class="heading settled" data-level="4.2" id="possible-zoom-listings"><span class="secno">4.2 </span><span class="content">Possible zoom listings</span><a class="self-link" href="#possible-zoom-listings"></a></h3>
+
+<table border=0 align="center" >
+<tr>
+  <th class="top">Device's dot size </th><th>=</th><th>resolution </th><th>* </th><th>PinchZoom </th><th>* </th><th>DocumentScale(child) </th><th>* .... * </th><th>DocumentScale(this) </th><th>* </th><th class="bottom">User coordinate's size</th>
+</tr>
+<tr>
+  <td class="top" colspan=3> Window's native CSS pxel size </td><td>= </td><td class="mqfeature">'zoom' </td><td>* </td><td class="bottom" colspan=5>Root document's css pixel size</td>
+</tr>
+<tr>
+  <td class="top">Device's dot size </td><td>=</td><td colspan=3 class="mqfeature">'zoom-dot' </td><td>* </td><td class="bottom" colspan=5>Root document's css pixel size</td>
+</tr>
+<tr>
+  <td class="top" colspan=3> Window's native CSS pxel size </td><td>= </td><td colspan=5 class="mqfeature">'document-zoom' </td><td>* </td><td class="bottom">User coordinate's size</td>
+</tr>
+<tr>
+  <td class="top">Device's dot size </td><td>=</td><td colspan=7 class="mqfeature">'document-zoom-dot' </td><td>* </td><td class="bottom">User coordinate's size</td>
+</tr>
+
+<tr>
+  <td class="top" colspan=5>Windows's CSS pixel size </td><td>=</td><td colspan=3 class="mqfeature">'window-scale' </td><td>* </td><td class="bottom">User coordinate's size</td>
+</tr>
+
+<tr>
+  <td class="top" colspan=7>Parent's CSS pixel size </td><td>=</td><td class="mqfeature">'document-scale' </td><td>* </td><td class="bottom">User coordinate's size</td>
+</tr>
+
+</table>
+
+<h4>Use cases</h4>
+<dl>
+<dt>'zoom' </dt>
+<dd>UAがネイティブで持つピンチズームジェスチャに応じて、スタイルやコンテンツを変化させるようなケース。</dd>
+<dt>'zoom-dot'</dt>
+<dd>'zoom'と似ているが、さらにRetinaなどdevice pixel ratioの違いも加味して、最適化されたコンテンツを提供するケース。</dd>
+<dt>'document-zoom'</dt>
+<dd></dd>
+<dt>'document-zoom-dot'</dt>
+<dd></dd>
+<dt>'window-scale'</dt>
+<dd>UAがネイティブで持つpinch zoom等に依存せず、iframeやimg要素によってインポートされるコンテンツのcss transformのscaleに依存したコンテンツを提供するケース。</dd>
+<dd>現在の地図情報サービスや、ハイレゾピクチャーアプリは、この機能をmassiveなjavascriptで実現している。私たちは、この機能よりむしろdocument-zoom*のほうを好む。</dd>
+<dt>'document-scale'</dt>
+<dd></dd>
+</dl>
 
 
    <h2 class="heading settled" data-level="5" id="zoom-media-features"><span class="secno">5. </span><span class="content">Zoom media features </span><a class="self-link" href="#zoom-media-features"></a></h2>
