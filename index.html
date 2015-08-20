@@ -252,13 +252,14 @@ class="content">Difference between existing features and zoom features</span></a
    <p>When change arises to the scale of contents by the zoom function which a user agent has, or change of CSS3 Transforms, media query with zoom media features can provide the responsible contents concerning zooming. In addition to control of a style sheet, the application to elements which can have media attributes such as <a href="http://www.w3.org/html/wg/drafts/html/master/semantics.html#the-source-element-when-used-with-the-picture-element">source</a> element etc. is also taken into consideration. </p>
 
    <h2 class="heading settled" data-level="2" id="usecase"><span class="secno">2. </span><span class="content">Use case</span><a class="self-link" href="#usecase"></a></h2>
-   <p><a href="http://svg2.mbsrv.net/devinfo/devkddi/lvl0.1/airPort_r1.html"> Mapping</a>や<a href="http://www.microsoft.com/web/solutions/zoomit.aspx"> Zoomable High-Resolution Photos </a>などのアプリケーションにおいては、ユーザによるズーム操作に応じてコンテンツや表現方法を切り替える機能が必要となる。
+   <p><em>This section is non-normative.</em>
+   <p>It is essential for applications such as <a href="http://svg2.mbsrv.net/devinfo/devkddi/lvl0.1/airPort_r1.html"> Mapping</a> and <a href="http://www.microsoft.com/web/solutions/zoomit.aspx"> Zoomable High-Resolution Photos </a> to switch contents or styles according to zoom operation by user. 
 
-　<p> ユーザのズーム操作は、UAが提供する機能またはWebアプリが提供する機能を利用して、実行される。UAが提供するズーム機能は、2種類ある。初期のviewportの大きさに影響を与えるpage zoomと、viewportには影響しない虫眼鏡的な振る舞いを行うpinch zoomを制御する機能である。一方で、Webアプリケーションが提供するズーム機能は、css transformなどを使って、コンテンツの座標系のscaleを制御する機能である。
+　<p> The zoom is implemented using a zoom function that is provided by UA level or by application level. There are two types of UA-level zoom functions: 1) page zoom which takes into account the size of initial viewport, and 2) pinch zoom which acts like a magnifying glass that doesn't affect the viewport. On the other hand, application-level zoom function controls a scale of coordinates for contents.
    
-   <p> アプリケーションデベロッパは、ユーザの各ズーム操作に対して、そのズーム率に応じて適切な表現を行うコンテンツを提供したいかもしれない。すなわち、概略的な情報から詳細な情報までを段階的に提供するLevel of Detailの機能である。しかしながら、WebアプリケーションがこのLevel of Detail機能を実現する場合、UAに、ズーム率の動的な変化を検知しそれに応じて表現を制御する機能が備わっていないため、現在では、マッシブなJSが必要である。この事実は、当該機能を含むWebアプリケーションの作りやすさを著しく低下させている。
+   <p> Application developper may want to provide the most appropriate contents according to zoom ratio changed by the user's zooming operation. That is Level of Detail (LoD) functionarity providing information from overview to detail. However, massive JS is currently required to implement LoD function since there is no features  in UA to detect the dynamic change of zoom ratio and control the expression according to the zoom ratio. This cause increasement of complexity to develop app using LoD.
 
-   <p>本スペックは、Media Queriesを拡張し、ズームに応じた動的な表現の切り替えを実現する機能を規定する。
+   <p>This specification prescribes a feature that control dynamic expression of content according to zoom by extending Media Queries.
 
 <div class="example" id="example-28baa0e2"><a class="self-link" href="#example-28baa0e2"></a>
     The following snippet shows how to obtain the width of the viewport:
@@ -269,27 +270,27 @@ class="content">Difference between existing features and zoom features</span></a
 
    <h2 class="heading settled" data-level="3" id="diff-exisiting"><span class="secno">3. </span><span class="content">Difference between existing features and zoom features</span><a class="self-link" href="#diff-existing"></a></h2>
 
-
-
 <p><ul>
   <li>
    <a href=http://www.w3.org/TR/mediaqueries-4/#resolution> <code class="css">resolution</code> media features</a> 
   </li>
   <dl>
-    Media Queriesのresolution media featureにおいては、UAにおけるpage zoomは考慮されるが、一方で、pinch zoomは常に1.0で、考慮されない。
+    resolution media feature takes into account the page zoom, but regards the pinch zoom as 1.0.
   </dl>
   <br><br>
   <li>
     <a href=http://www.w3.org/TR/css-device-adapt/#the-lsquozoomrsquo-property> <code class="css">zoom</code> property at @viewport </a>
   </li>
    <dl>
-    This specifies only layout of content at initial status rather than description according to interaction. And also, only mobile browsers support it, but desktop browsers doesn't support it. 
+    This specifies only layout of content at initial status rather than description according to interaction. And also, there are only mobile browsers but no desktop browsers supporting this.
     </dl>
 </ul>
 
    <h2 class="heading settled" data-level="4" id="zooming-behaviors"><span class="secno">4. </span><span class="content">Possible zooming types </span><a class="self-link" href="#zooming-behaviors"></a></h2>
 
-<p><em>This sction is non normative.</em>
+<p><em>This section is non normative.</em>
+<p> This chapter organizes possible zooming patterns provided by UA and web contents. UA may have a native function for zooming such as page zoom and pinch zoom. Also, CSS pixel size may not be same as the size of device pixel (dot), as it may appear  as devicePixelRatio. Additionally, web contents are sometimes nested with iframe element. The CSS pixel unit size in child document may differ from the unit size in parent one [TODO***********]when apply with CSS Transforms
+
 この章は、User Agentと、そこで表示されるウェブコンテンツにおいて、考えられ得る様々なzoomの概念を整理する。User Agentにはpinch zoomやpage zoomといったズーミング機能がネイティブに備わっているかもしれない。また、devicePixelRatioとして現れるように、CSS pixelとデバイスのピクセル(dot)は同じサイズではないかもしれない。さらに、ウェブコンテンツは、時として、iframeなどによって、入れ子状になることがある。このような入れ子状のコンテンツにおいて、CSS Transformsが与えられた場合、子供のドキュメントのCSS Pixelの単位サイズは、親のそれと異なるかもしれない。これらの、コンテンツのサイズを変化させるパラメータたちは、いずれも"ズーム"の概念に含まれ得る。そこで、これらのパラメータが全て導入された式を以下に示す。この式はユーザエージェントがスクリーンデバイスを持つ場合、そのデバイスのドットのサイズに対して、ドキュメントルートのユーザ座標系におけるサイズとの間の関係を示す式である。
 </p>
 
