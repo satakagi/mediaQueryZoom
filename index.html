@@ -247,13 +247,18 @@ class="content">Difference between existing features and zoom features</span></a
    <h2 class="heading settled" data-level="2" id="usecase"><span class="secno">2. </span><span class="content">Use case</span><a class="self-link" href="#usecase"></a></h2>
    <p>マッピングや超解像度写真などのアプリケーションにおいては、ユーザによる拡大/縮小操作に応じたコンテンツや表現の切り替えが必要となる。
 
-   <p>けれども、Webアプリケーションとしてそれを作るには、マッシブなJSが必要である。それがこうしたコンテンツの作りやすさを下げている。
+<dl>
+<dt><a href="http://svg2.mbsrv.net/devinfo/devkddi/lvl0.1/airPort_r1.html"> Mapping use case </a>
+<dt><a href="http://www.microsoft.com/web/solutions/zoomit.aspx"> Zoomable High-Resolution Photos </a>
+</dl>
 
-   <p>Viewport meta tagを利用することにより、コンテンツに対して、幅やズーム率を設定して初期のレイアウトをセットすることはできるものの、ユーザの操作などにより変わるズーム率に応じて、動的なコンテンツ表現を提供することは実現できない。
+　<p> 例えば、マッピングの場合、ズームボタンを押した際やピンチイン操作によって、コンテンツはズームされる必要がある。ズームを繰り返すことにより、徐々に、概略的な情報から詳細な情報までが得られるべきである。
+　<p> ズームボタンを押した際には、iframeなどのembeddedContentに対するscaleをcss transformなどを利用してスケールさせる。
+　<p>ピンチイン操作を行う場合には、
+　
+   <p>しかしながら、Webアプリケーションとして、これらを開発するためには、マッシブなJSが必要である。それがこれらのコンテンツの作りやすさを低下させている。
 
-   <p>本スペックは、これを実現することを目的としている。
-
-
+   <p>一方で、Viewport meta tagを利用することにより、コンテンツに対して、幅やズーム率を設定して初期のレイアウトを制御することは可能である。しかしながら、ユーザの操作などにより変わるズーム率に応じて、動的なコンテンツ表現を提供することは実現できない。本スペックは、ズームに応じた動的な表現の切り替えを実現することを目的としている。
 
    <h2 class="heading settled" data-level="3" id="diff-exisiting"><span class="secno">3. </span><span class="content">Difference between existing features and zoom features</span><a class="self-link" href="#diff-existing"></a></h2>
 
@@ -264,14 +269,14 @@ class="content">Difference between existing features and zoom features</span></a
    <a href=http://www.w3.org/TR/mediaqueries-4/#resolution> <code class="css">resolution</code> media features</a> 
   </li>
   <dl>
-    Media Queriesの、resolution media featureは、UAにおけるpage zoomは影響を与える一方で、pinch zoomは影響を与えない。
+    Media Queriesのresolution media featureにおいては、UAにおけるpage zoomは考慮されるが、一方で、pinch zoomは常に1.0で、考慮されない。
   </dl>
   <br><br>
   <li>
     <a href=http://www.w3.org/TR/css-device-adapt/#the-lsquozoomrsquo-property> <code class="css">zoom</code> property at @viewport </a>
   </li>
    <dl>
-    This specifies only layout of content at initial status rather than ********. And also, only mobile browsers support it. Any desktop browser doesn't support. Not interactive.
+    This specifies only layout of content at initial status rather than description according to interaction. And also, only mobile browsers support it, but desktop browsers doesn't support it. 
     </dl>
 </ul>
 
