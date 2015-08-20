@@ -162,7 +162,7 @@ a#bikeshed.pending [fill=blue] { animation-name: fill; } --></style></head>
   <div class="p-summary" data-fill-with="abstract">
    <p><em>media queries</em> provides the query for the change of a style sheet or control of resource loadings according to the condition of media feature.</p>
 
-   <p>This spec. extends some media features to media query reacted to zooming of a user agent or contents.</p>
+   <p>This specification extends some media features to media query reacted to zooming of a user agent or contents.</p>
    
    
 
@@ -249,7 +249,7 @@ class="content">Difference between existing features and zoom features</span></a
    <h2 class="heading settled" data-level="1" id="intro"><span class="secno">1. </span><span class="content">Introduction</span><a class="self-link" href="#intro"></a></h2>
 
 
-   <p>When change arises to the scale of contents by the zoom function which a user agent has, or change of CSS3 Transforms, media query with zoom media features can provide the responsible contents concerning zooming. In addition to control of a style sheet, the application to elements which can have media attributes such as <a href="http://www.w3.org/html/wg/drafts/html/master/semantics.html#the-source-element-when-used-with-the-picture-element">source</a> element etc. is also taken into consideration. </p>
+   <p>（＊＊＊＊＊ユースケースの章と重なる部分があるので、必要か＊＊＊＊＊）When change arises to the scale of contents by the zoom function which a user agent has, or change of CSS3 Transforms, media query with zoom media features can provide the responsible contents concerning zooming. In addition to control of a style sheet, the application to elements which can have media attributes such as <a href="http://www.w3.org/html/wg/drafts/html/master/semantics.html#the-source-element-when-used-with-the-picture-element">source</a> element etc. is also taken into consideration. </p>
 
    <h2 class="heading settled" data-level="2" id="usecase"><span class="secno">2. </span><span class="content">Use case</span><a class="self-link" href="#usecase"></a></h2>
    <p><em>This section is non-normative.</em>
@@ -262,6 +262,7 @@ class="content">Difference between existing features and zoom features</span></a
    <p>This specification prescribes a feature that control dynamic expression of content according to zoom by extending Media Queries.
 
 <div class="example" id="example-28baa0e2"><a class="self-link" href="#example-28baa0e2"></a>
+（＊＊＊＊＊サンプルコードを載せる必要がある＊＊＊＊＊）
     The following snippet shows how to obtain the width of the viewport:
 
     <pre>var viewportWidth = innerWidth</pre>
@@ -289,9 +290,7 @@ class="content">Difference between existing features and zoom features</span></a
    <h2 class="heading settled" data-level="4" id="zooming-behaviors"><span class="secno">4. </span><span class="content">Possible zooming types </span><a class="self-link" href="#zooming-behaviors"></a></h2>
 
 <p><em>This section is non normative.</em>
-<p> This chapter organizes possible zooming patterns provided by UA and web contents. UA may have a native function for zooming such as page zoom and pinch zoom. Also, CSS pixel size may not be same as the size of device pixel (dot), as it may appear  as devicePixelRatio. Additionally, web contents are sometimes nested with iframe element. The CSS pixel unit size in child document may differ from the unit size in parent one [TODO***********]when apply with CSS Transforms
-
-この章は、User Agentと、そこで表示されるウェブコンテンツにおいて、考えられ得る様々なzoomの概念を整理する。User Agentにはpinch zoomやpage zoomといったズーミング機能がネイティブに備わっているかもしれない。また、devicePixelRatioとして現れるように、CSS pixelとデバイスのピクセル(dot)は同じサイズではないかもしれない。さらに、ウェブコンテンツは、時として、iframeなどによって、入れ子状になることがある。このような入れ子状のコンテンツにおいて、CSS Transformsが与えられた場合、子供のドキュメントのCSS Pixelの単位サイズは、親のそれと異なるかもしれない。これらの、コンテンツのサイズを変化させるパラメータたちは、いずれも"ズーム"の概念に含まれ得る。そこで、これらのパラメータが全て導入された式を以下に示す。この式はユーザエージェントがスクリーンデバイスを持つ場合、そのデバイスのドットのサイズに対して、ドキュメントルートのユーザ座標系におけるサイズとの間の関係を示す式である。
+<p> This chapter organizes possible zooming patterns provided by UA and web contents. UA may have a native function for zooming such as page zoom and pinch zoom. Also, CSS pixel size may not be same as the size of device pixel (dot), as it may appear  as devicePixelRatio. Additionally, web contents are sometimes nested with iframe element. The CSS pixel unit size in child document may differ from the CSS pixel unit size in parent document when CSS Transforms is applied to the contents in the documents. These parameters to change the size of contents are able to fall into the concept of "zoom".  The formula including these all parameters regarding zoom is indicated as below. This formula indicate relation between the dot size of device and the pixel size in the user coordinate of document root.（＊＊＊＊＊ドキュメントルートにおけるという部分の意味がわからない＊＊＊＊＊）
 </p>
 
 <p>
@@ -302,31 +301,40 @@ class="content">Difference between existing features and zoom features</span></a
 </p>
 
 <p>
-ここで、それぞれの変数は以下のとおりである。いずれの変数もスカラー値である。
+Each variable number is described as below. The variables are defined as scalar value.
 </p>
+
 <dl>
  <dt>resolution</dt>
- <dd><a href="#biblio-css-values">[CSS3-VALUES]</a>の<a href="http://www.w3.org/TR/css3-values/#resolution">に説明された、resolution</a>の、dppxによる値である。それはまた<a href="#biblio-cssom-view">[CSSOM-VIEW]</a>の<a href="https://drafts.csswg.org/cssom-view/#dom-window-devicepixelratio">devicePixelRatio</a>と同じものである。</dd>
+ <dd>This is a value of <a href="http://www.w3.org/TR/css3-values/#resolution">resolution</a> with "dppx" prescribed in <a href="#biblio-css-values">[CSS3-VALUES]</a>. This value is same as <a href="https://drafts.csswg.org/cssom-view/#dom-window-devicepixelratio">devicePixelRatio</a> defined in <a href="#biblio-cssom-view">[CSSOM-VIEW]</a>.</dd>
  <dt>PageZoom</dt>
- <dd><a href="#biblio-cssom-view">[CSSOM-VIEW]</a>の<a href="http://dev.w3.org/csswg/cssom-view/#zooming">zooming</a>に説明された、PageZoomである。
+ <dd>This is a value of <a href="http://dev.w3.org/csswg/cssom-view/#zooming">page zoom</a> prescribed in <a href="#biblio-cssom-view">[CSSOM-VIEW]</a>（＊＊＊＊＊＊PageZoomのように、キャピタライズされている意味はあるか？＊＊＊＊＊＊＊）
  <dt>PinchZoom</dt>
- <dd><a href="#biblio-cssom-view">[CSSOM-VIEW]</a>の<a href="http://dev.w3.org/csswg/cssom-view/#zooming">zooming</a>に説明された、PinchZoomである。
+ <dd>This is a value of <a href="http://dev.w3.org/csswg/cssom-view/#zooming">pinch  zoom</a> prescribed in <a href="#biblio-cssom-view">[CSSOM-VIEW]</a>.
  <dt>DocumentScale</dt>
- <dd>もしも、メディアクエリのターゲットとなるコンテンツが、HTMLやSVGのembedded content (<a href="http://www.w3.org/TR/html5/embedded-content-0.html">HTMLEmbedded Content</a>, <a href="http://www.w3.org/TR/SVG2/embedded.html">SVG Embedded Content</a>)を用いた入れ子のコンテンツである場合に、embedded contentのための要素における、子供のコンテンツへのtransformsから発生するscale値。入れ子の段数だけそれらは連結される。(child)はルートのドキュメントから子供のドキュメンへのtransformから生成されるscaleである。DocumentScale(this)は、最も子孫のドキュメント(これをthisを称する)のその親のドキュメントからそのドキュメントへのscaleである。</dd>
+ <dd>This is a value of scale given by transform to child's content of an element for embedded content (<a href="http://www.w3.org/TR/html5/embedded-content-0.html">HTMLEmbedded Content</a>, <a href="http://www.w3.org/TR/SVG2/embedded.html">SVG Embedded Content</a>) such as iframe, if contents targeted by media queries are nested with an embedded content element. Whole scale value is calculated by multiplying each scale in each nest.  Let DocumentScale(child) be a scale given by transform from a root document to a child document. Let DocumentScale(this) be a scale given by transform from a parent document of the childmost（＊＊＊＊＊最も子孫をなんて呼ぶべきか＊＊＊＊＊） document (called this) to the childmost document.
+ </dd>
  
  <dt>nativeResolution</dt>
- <dd>PageZoomが1.0のときのresolutionである</dd>
+ <dd>This is a value of resolution in a condition that PageZoom is 1.0.</dd>
  
  <dt>deviceDotSize</dt>
- <dd>デバイスが持つネイティブのピクセルである'dot'の単位系におけるサイズ</dd>
+ <dd>This is a value of size of device native pixel in 'dot' unit system.</dd>
  <dt>contentSize</dt>
- <dd>コンテンツが持つ座標系におけるCSS Pixelサイズ。transformがかかり、伸縮し得る</dd>
- 
+ <dd>This is a value of size of CSS pixel in a content's coordinate system. This value is able to be scaled with transform function.</dd> 
 </dl>
+
    <h3 class="heading settled" data-level="4.1" id="embed-content-scale"><span class="secno">4.1 </span><span class="content">Scale of Embedded Content</span><a class="self-link" href="#embed-content-scale"></a></h3>
-<p> 親のコンテンツにおけるembedded contentのための要素が持つ<a href="http://www.w3.org/TR/css3-transforms/#current-transformation-matrix-ctm">CTM</a> や、<a href="#svg2">[SVG2]</a>における<a href="http://www.w3.org/TR/SVG2/coords.html#EstablishingANewSVGViewport">viewport establishment</a> processにおける暗黙のtransformationによって、親のコンテンツの座標系から、このコンテンツへの座標系への(<a href="#biblio-css-transforms">[CSS-TRANSFORMS]</a>)が定まります。そのtransform matrixから求められる<a href="http://svg2.mbsrv.net/devinfo/devstd/CSS_Transforms_Diff/css3Transforms_tmp/css-transforms-2_tmp/#scale">scale</a> (<a href="#biblio-css-transforms-2">[CSS-TRANSFORMS-2]</a>)が、この値です。</p>
+
+<p> 
+Transform matrix (<a href="#biblio-css-transforms">[CSS-TRANSFORMS]</a>) from parent's coorditnate system to child's coordinate system is given by <a href="http://www.w3.org/TR/css3-transforms/#current-transformation-matrix-ctm">CTM</a> of an embedded content element in parent content and implicit transformation in <a href="#svg2">[SVG2]</a>における<a href="http://www.w3.org/TR/SVG2/coords.html#EstablishingANewSVGViewport">viewport establishment</a> process in <a href="#svg2">[SVG2]</a>. The value of <a href="http://svg2.mbsrv.net/devinfo/devstd/CSS_Transforms_Diff/css3Transforms_tmp/css-transforms-2_tmp/#scale">scale</a> (<a href="#biblio-css-transforms-2">[CSS-TRANSFORMS-2]</a>) is given by the transform matrix.
+</p>
 <p>
-CSSやSVGではドキュメントルートの子要素に対してtransformプロパティを設置することができます。しかし、ここに示すDocumentScaleは、あくまでも親の文書に対する、そのドキュメントルートのtransformationに基づく値でしかありません。それは、media queryがドキュメントを取り巻く外側のコンディションに対するクエリであるという特性に起因します。
+（＊＊＊＊＊CSSで正しい？HTMLではなくて？＊＊＊＊＊）
+（＊＊＊＊＊ドキュメントルート？＊＊＊＊＊）
+transform property can be given to child element of document root in CSS and SVG. 
+However, DocumentScale absolutely is a value based on transformation of document root to parent document.（＊＊＊＊＊←このセンテンスの意味がわからない（ここに示すDocumentScaleは、あくまでも親の文書に対する、そのドキュメントルートのtransformationに基づく値でしかありません。）＊＊＊＊＊） This is caused by characteristics in which media queries take into account only external condition outside the document including elements given the queries.
+（＊＊＊＊＊←この文は、理解が難しい＊＊＊＊＊）
 </p>
 
    <h3 class="heading settled" data-level="4.2" id="possible-zoom-listings"><span class="secno">4.2 </span><span class="content">Possible zoom listings</span><a class="self-link" href="#possible-zoom-listings"></a></h3>
@@ -358,27 +366,27 @@ CSSやSVGではドキュメントルートの子要素に対してtransformプ�
 
 </table>
 
-<h4>Use cases</h4>
+<h4>Use cases of each zoom type</h4>
 <dl>
 <dt>'zoom' </dt>
-<dd>UAがネイティブで持つピンチズームジェスチャに応じて、スタイルやコンテンツを変化させるようなケース。</dd>
+<dd>The case that styles and contents are provided according to pinch zoom gesture provided by UA native functionality. </dd>
 <dt>'zoom-dot'</dt>
-<dd>'zoom'と似ているが、さらにRetinaなどdevice pixel ratioの違いも加味して、最適化されたコンテンツを提供するケース。</dd>
+<dd>The case that styles and contents are provided with reflecting the devicePixelRatio such as Retina display in addition to 'zoom'. </dd>
 <dt>'document-zoom'</dt>
-<dd></dd>
+<dd>（＊＊＊＊＊説明が必要＊＊＊＊＊）</dd>
 <dt>'document-zoom-dot'</dt>
-<dd></dd>
+<dd>（＊＊＊＊＊説明が必要＊＊＊＊＊）</dd>
 <dt>'window-scale'</dt>
-<dd>UAがネイティブで持つpinch zoom等に依存せず、iframeやimg要素によってインポートされるコンテンツのcss transformのscaleに依存したコンテンツを提供するケース。</dd>
-<dd>現在の地図情報サービスや、ハイレゾピクチャーアプリは、この機能をmassiveなjavascriptで実現している。私たちは、この機能よりむしろdocument-zoom*のほうを好む。</dd>
+<dd>The case that styles and contents are provided according to scale of CSS Transforms on contents imported by iframe and img element, but independing on pinch zoom gesture provided by UA native functionality.
+</dd>
+<dd>（From the viewpoint of mapping use case, "document-zoom" is better rather than this "window-scale") </dd>
 <dt>'document-scale'</dt>
 <dd></dd>
 </dl>
 
-
    <h2 class="heading settled" data-level="5" id="zoom-media-features"><span class="secno">5. </span><span class="content">Zoom media features </span><a class="self-link" href="#zoom-media-features"></a></h2>
 <p>
-前章に示した式に対し、以下のzoom media featuresが規定される。それらは、先述の式の特定の項、もしくは特定の項の組み合わせに対して、それをfeatureと定めたものである。
+Zoom media features are prescribed as below based on the formula in a previous section. These features are specified by a single term or the combination of terms in the above formula. 
 </p>
 
   <h3 class="heading settled" data-level="5.1" id="zoom"><span class="secno">5.1 </span><span class="content">zoom</span><a class="self-link" href="#zoom"></a></h3>
@@ -388,9 +396,8 @@ CSSやSVGではドキュメントルートの子要素に対してtransformプ�
    <span class="label">Accepts min/max prefixes:</span> yes<br>
   </div>
   
-  <p>The<code class="css">zoom</code> media feature corresponds to <a href="https://drafts.csswg.org/cssom-view/#zooming"><code>pinch zoom</code></a> described on <a href="#biblio-cssom-view">[CSSOM VIEW]</a>. ただし、その名前は、それと同じ意味を示す、<a href="#biblio-css-device-adapt">[CSS-DEVICE-ADAPT]</a>の<a href="http://www.w3.org/TR/css-device-adapt/#the-lsquozoomrsquo-property"><code class="css">zoom</code></a>に整合させるため、<code class="css">zoom</code>である。</p>
-
-
+  <p>The<code class="css">zoom</code> media feature corresponds to <a href="https://drafts.csswg.org/cssom-view/#zooming"><code>pinch zoom</code></a> described on <a href="#biblio-cssom-view">[CSSOM VIEW]</a>. (This naming of this feature is to ensure consitency with <a href="http://www.w3.org/TR/css-device-adapt/#the-lsquozoomrsquo-property"><code class="css">zoom</code></a>)
+</p>
 
 
   <h3 class="heading settled" data-level="5.2" id="document-zoom"><span class="secno">5.2 </span><span class="content">document-zoom</span><a class="self-link" href="#document-zoom"></a></h3>
@@ -399,18 +406,15 @@ CSSやSVGではドキュメントルートの子要素に対してtransformプ�
    <span class="label">Applies to:</span> visual and tactile media types<br>
    <span class="label">Accepts min/max prefixes:</span> yes<br>
   </div>
-  <p><code>PinchZoom * (embedContentScale(root)) * .... * (embedContentScale(parent))</code>に相当する。すなわち、media queryのターゲットとなるのdocumentの、CSS Pixelの世界における、Uaser AgentのWindowに対するzoomを表す。User Agentが持つzoom機能が加味される。</p>
-
+  <p>
+  The 'document-zoom' media feature corresponds to <code>PinchZoom * (embedContentScale(root)) * .... * (embedContentScale(parent))</code>. This means zooming to window of UA in CSS Pixel coordinates of document targetted by media queries.UA native zooming is reflected to this features.
+  </p>
 
 <br><br>
 <h2 class="no-num heading settled" id="acknowledgments"><span class="content">Acknowledgments</span><a class="self-link" href="#acknowledgments"></a></h2>
 
   <p>This specification is the product of the W3C Working Group on Cascading
    Style Sheets.</p>
-   
-   <p></p>
-  
-
 
   <h2 class="no-num heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
   
