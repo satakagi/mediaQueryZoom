@@ -16,7 +16,7 @@
   <meta content="unofficial" name="w3c-status">
   
   
-  <link href="../default.css" rel="stylesheet" type="text/css">
+  <link href="default.css" rel="stylesheet" type="text/css">
   
   
   <link href="../csslogo.ico" rel="shortcut icon" type="image/x-icon">
@@ -252,15 +252,20 @@ class="content">Difference between existing features and zoom features</span></a
    <p>When change arises to the scale of contents by the zoom function which a user agent has, or change of CSS3 Transforms, media query with zoom media features can provide the responsible contents concerning zooming. In addition to control of a style sheet, the application to elements which can have media attributes such as <a href="http://www.w3.org/html/wg/drafts/html/master/semantics.html#the-source-element-when-used-with-the-picture-element">source</a> element etc. is also taken into consideration. </p>
 
    <h2 class="heading settled" data-level="2" id="usecase"><span class="secno">2. </span><span class="content">Use case</span><a class="self-link" href="#usecase"></a></h2>
-   <p><a href="http://svg2.mbsrv.net/devinfo/devkddi/lvl0.1/airPort_r1.html"> Mapping use case </a>や<a href="http://www.microsoft.com/web/solutions/zoomit.aspx"> Zoomable High-Resolution Photos </a>などのアプリケーションにおいては、ユーザによる拡大/縮小操作に応じたコンテンツや表現の切り替えが必要となる。
+   <p><a href="http://svg2.mbsrv.net/devinfo/devkddi/lvl0.1/airPort_r1.html"> Mapping</a>や<a href="http://www.microsoft.com/web/solutions/zoomit.aspx"> Zoomable High-Resolution Photos </a>などのアプリケーションにおいては、ユーザによるズーム操作に応じてコンテンツや表現方法を切り替える機能が必要となる。
 
-　<p> ユーザの操作によるズームパタンはいくつか考えられるが、。例えば、マッピングの場合、ズームボタンを押した際やピンチイン操作によって、コンテンツはズームされる必要がある。ズームを繰り返すことにより、徐々に、概略的な情報から詳細な情報までが得られるべきである。
-　<p> ズームボタンを押した際には、iframeなどのembeddedContentに対して、css transformのscaleに応じてスケールさせる。
-　<p> ピンチイン操作を行った際には、ピンチインで変化するPinchZoomに応じて、ズームされて表示されるとともに、適切なコンテンツが表示される。
-　　
-   <p>しかしながら、Webアプリケーションとして、これらを開発するためには、マッシブなJSが必要である。それがこれらのコンテンツの作りやすさを低下させている。
+　<p> ユーザのズーム操作は、UAが提供する機能またはWebアプリが提供する機能を利用して、実行される。UAが提供するズーム機能は、2種類ある。初期のviewportの大きさに影響を与えるpage zoomと、viewportには影響しない虫眼鏡的な振る舞いを行うpinch zoomを制御する機能である。一方で、Webアプリケーションが提供するズーム機能は、css transformなどを使って、コンテンツの座標系のscaleを制御する機能である。
+   
+   <p> アプリケーションデベロッパは、ユーザの各ズーム操作に対して、そのズーム率に応じて適切な表現を行うコンテンツを提供したいかもしれない。すなわち、概略的な情報から詳細な情報までを段階的に提供するLevel of Detailの機能である。しかしながら、WebアプリケーションがこのLevel of Detail機能を実現する場合、UAに、ズーム率の動的な変化を検知しそれに応じて表現を制御する機能が備わっていないため、現在では、マッシブなJSが必要である。この事実は、当該機能を含むWebアプリケーションの作りやすさを著しく低下させている。
 
-   <p>一方で、Viewport meta tagを利用することにより、コンテンツに対して、幅やズーム率を設定して初期のレイアウトを制御することは可能である。しかしながら、ユーザの操作などにより変わるズーム率に応じて、動的なコンテンツ表現を提供することは実現できない。本スペックは、ズームに応じた動的な表現の切り替えを実現することを目的としている。
+   <p>本スペックは、Media Queriesを拡張し、ズームに応じた動的な表現の切り替えを実現する機能を規定する。
+
+<div class="example" id="example-28baa0e2"><a class="self-link" href="#example-28baa0e2"></a>
+    The following snippet shows how to obtain the width of the viewport:
+
+    <pre>var viewportWidth = innerWidth</pre>
+</div>
+
 
    <h2 class="heading settled" data-level="3" id="diff-exisiting"><span class="secno">3. </span><span class="content">Difference between existing features and zoom features</span><a class="self-link" href="#diff-existing"></a></h2>
 
