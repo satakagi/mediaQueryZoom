@@ -65,6 +65,13 @@
   }
   </style>
   
+<style type="text/css">
+td { text-align: center; }
+td.mqz_top { text-align: right; color: blue;}
+td.mqz_bottom { text-align: left; color: orange;}
+td.mqz_feature { background-color: yellow;}
+th { background-color: gray;}
+</style>
 
   <meta content="Bikeshed 1.0.0" name="generator">
   
@@ -325,27 +332,27 @@ CSSやSVGではドキュメントルートの子要素に対してtransformプ�
 
 <table border=0 align="center" >
 <tr>
-  <th class="top">Device's dot size </th><th>=</th><th>resolution </th><th>* </th><th>PinchZoom </th><th>* </th><th>DocumentScale(child) </th><th>* .... * </th><th>DocumentScale(this) </th><th>* </th><th class="bottom">User coordinate's size</th>
+  <th class="mqz_top">Device's dot size </th><th>=</th><th>resolution </th><th>* </th><th>PinchZoom </th><th>* </th><th>DocumentScale(child) </th><th>* .... * </th><th>DocumentScale(this) </th><th>* </th><th class="mqz_bottom">User coordinate's size</th>
 </tr>
 <tr>
-  <td class="top" colspan=3> Window's native CSS pxel size </td><td>= </td><td class="mqfeature">'zoom' </td><td>* </td><td class="bottom" colspan=5>Root document's css pixel size</td>
+  <td class="mqz_top" colspan=3> Window's native CSS pxel size </td><td>= </td><td class="mqz_feature">'zoom' </td><td>* </td><td class="mqz_bottom" colspan=5>Root document's css pixel size</td>
 </tr>
 <tr>
-  <td class="top">Device's dot size </td><td>=</td><td colspan=3 class="mqfeature">'zoom-dot' </td><td>* </td><td class="bottom" colspan=5>Root document's css pixel size</td>
+  <td class="mqz_top">Device's dot size </td><td>=</td><td colspan=3 class="mqz_feature">'zoom-dot' </td><td>* </td><td class="mqz_bottom" colspan=5>Root document's css pixel size</td>
 </tr>
 <tr>
-  <td class="top" colspan=3> Window's native CSS pxel size </td><td>= </td><td colspan=5 class="mqfeature">'document-zoom' </td><td>* </td><td class="bottom">User coordinate's size</td>
+  <td class="mqz_top" colspan=3> Window's native CSS pxel size </td><td>= </td><td colspan=5 class="mqz_feature">'document-zoom' </td><td>* </td><td class="mqz_bottom">User coordinate's size</td>
 </tr>
 <tr>
-  <td class="top">Device's dot size </td><td>=</td><td colspan=7 class="mqfeature">'document-zoom-dot' </td><td>* </td><td class="bottom">User coordinate's size</td>
-</tr>
-
-<tr>
-  <td class="top" colspan=5>Windows's CSS pixel size </td><td>=</td><td colspan=3 class="mqfeature">'window-scale' </td><td>* </td><td class="bottom">User coordinate's size</td>
+  <td class="mqz_top">Device's dot size </td><td>=</td><td colspan=7 class="mqz_feature">'document-zoom-dot' </td><td>* </td><td class="mqz_bottom">User coordinate's size</td>
 </tr>
 
 <tr>
-  <td class="top" colspan=7>Parent's CSS pixel size </td><td>=</td><td class="mqfeature">'document-scale' </td><td>* </td><td class="bottom">User coordinate's size</td>
+  <td class="mqz_top" colspan=5>Windows's CSS pixel size </td><td>=</td><td colspan=3 class="mqz_feature">'window-scale' </td><td>* </td><td class="mqz_bottom">User coordinate's size</td>
+</tr>
+
+<tr>
+  <td class="mqz_top" colspan=7>Parent's CSS pixel size </td><td>=</td><td class="mqz_feature">'document-scale' </td><td>* </td><td class="mqz_bottom">User coordinate's size</td>
 </tr>
 
 </table>
