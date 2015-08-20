@@ -252,17 +252,12 @@ class="content">Difference between existing features and zoom features</span></a
    <p>When change arises to the scale of contents by the zoom function which a user agent has, or change of CSS3 Transforms, media query with zoom media features can provide the responsible contents concerning zooming. In addition to control of a style sheet, the application to elements which can have media attributes such as <a href="http://www.w3.org/html/wg/drafts/html/master/semantics.html#the-source-element-when-used-with-the-picture-element">source</a> element etc. is also taken into consideration. </p>
 
    <h2 class="heading settled" data-level="2" id="usecase"><span class="secno">2. </span><span class="content">Use case</span><a class="self-link" href="#usecase"></a></h2>
-   <p>マッピングや超解像度写真などのアプリケーションにおいては、ユーザによる拡大/縮小操作に応じたコンテンツや表現の切り替えが必要となる。
+   <p><a href="http://svg2.mbsrv.net/devinfo/devkddi/lvl0.1/airPort_r1.html"> Mapping use case </a>や<a href="http://www.microsoft.com/web/solutions/zoomit.aspx"> Zoomable High-Resolution Photos </a>などのアプリケーションにおいては、ユーザによる拡大/縮小操作に応じたコンテンツや表現の切り替えが必要となる。
 
-<dl>
-<dt><a href="http://svg2.mbsrv.net/devinfo/devkddi/lvl0.1/airPort_r1.html"> Mapping use case </a>
-<dt><a href="http://www.microsoft.com/web/solutions/zoomit.aspx"> Zoomable High-Resolution Photos </a>
-</dl>
-
-　<p> 例えば、マッピングの場合、ズームボタンを押した際やピンチイン操作によって、コンテンツはズームされる必要がある。ズームを繰り返すことにより、徐々に、概略的な情報から詳細な情報までが得られるべきである。
-　<p> ズームボタンを押した際には、iframeなどのembeddedContentに対するscaleをcss transformなどを利用してスケールさせる。
-　<p>ピンチイン操作を行う場合には、
-　
+　<p> ユーザの操作によるズームパタンはいくつか考えられるが、。例えば、マッピングの場合、ズームボタンを押した際やピンチイン操作によって、コンテンツはズームされる必要がある。ズームを繰り返すことにより、徐々に、概略的な情報から詳細な情報までが得られるべきである。
+　<p> ズームボタンを押した際には、iframeなどのembeddedContentに対して、css transformのscaleに応じてスケールさせる。
+　<p> ピンチイン操作を行った際には、ピンチインで変化するPinchZoomに応じて、ズームされて表示されるとともに、適切なコンテンツが表示される。
+　　
    <p>しかしながら、Webアプリケーションとして、これらを開発するためには、マッシブなJSが必要である。それがこれらのコンテンツの作りやすさを低下させている。
 
    <p>一方で、Viewport meta tagを利用することにより、コンテンツに対して、幅やズーム率を設定して初期のレイアウトを制御することは可能である。しかしながら、ユーザの操作などにより変わるズーム率に応じて、動的なコンテンツ表現を提供することは実現できない。本スペックは、ズームに応じた動的な表現の切り替えを実現することを目的としている。
