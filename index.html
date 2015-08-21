@@ -260,17 +260,17 @@ class="content">Difference between existing features and zoom features</span></a
    <p>Moreover, contents provider may want to provide the most appropriate contents or styling according to zoom ratio changed by the user's zooming operation. Such functions are called <a href="https://en.wikipedia.org/wiki/Level_of_detail">'Level of Detail' (LoD)</a> and are conventionally popular. LoD is effective functionarity not only to provide information interactively from overview to detail but also to control the distribution of the detailed large size data. It is convenient for content providers that UA has a function which such LoD realizes without massive JS apps.</p>
    <p>The function which controls styles and resources according to various environments which surrounds contents is offered as css media query and picture element etc. which used it.  It is considered that zoom shown here is also a kind of such environment. So, this specification prescribes a feature that control dynamic expression of content according to zoom by extending Media Queries.</p>
 
-<div class="example" id="example-28baa0e2"><a class="self-link" href="#example-28baa0e2"></a>
+<div class="example" id="example-28baa0e2a"><a class="self-link" href="#example-28baa0e2"></a>
     This media query simply detects magnification (this zoom ratio is at least 2.0):
    <pre>@media (zoom >= 2.0)</pre>
 </div>
 
-<div class="example" id="example-28baa0e2"><a class="self-link" href="#example-28baa0e2"></a>
+<div class="example" id="example-28baa0e2b"><a class="self-link" href="#example-28baa0e2"></a>
    For example, this media query expresses that a style sheet is usable when the zoom ratio is greater than 2.0:
    <pre>@media (min-zoom: 2.0) { ... }</pre>
 </div>
 
-<div class="example" id="example-28baa0e2"><a class="self-link" href="#example-28baa0e2"></a>
+<div class="example" id="example-28baa0e2c"><a class="self-link" href="#example-28baa0e2"></a>
    For example, this media query expresses that style sheets are switched according to zoom ratio. img element is displayed in the case of (1.0 <= zoom < 2.0), but img element is displayed in the case of (2.0 <= zoom):
   <pre>
     &lt;html&gt;
@@ -293,6 +293,21 @@ class="content">Difference between existing features and zoom features</span></a
       &lt;/body&gt;
     &lt;/html&gt;
   </pre>
+</div>
+
+<div class="example" id="example-28baa0e2d"><a class="self-link" href="#example-28baa0e2"></a>
+   This example shows zoom media query in picture element:
+   <pre><picture>
+  <source 
+    media="(min-zoom: 4.0)"
+    srcset="images/ultra-high-res-image.png">
+  <source 
+    media="(min-zoom: 2.0)"
+    srcset="images/high-res-image.png">
+  <img 
+    src="images/normal-image.png" 
+    alt="a zoomable image">
+</picture></pre>
 </div>
 
    <h2 class="heading settled" data-level="3" id="diff-exisiting"><span class="secno">3. </span><span class="content">Difference between existing features and zoom features</span><a class="self-link" href="#diff-existing"></a></h2>
