@@ -160,7 +160,7 @@ a#bikeshed.pending [fill=blue] { animation-name: fill; } --></style></head>
   <h2 class="no-num no-toc no-ref heading settled" id="abstract"><span class="content">Abstract</span></h2>
 
   <div class="p-summary" data-fill-with="abstract">
-   <p><em>media queries</em> provides the query for the change of a style sheet or control of resource loadings according to the condition of media feature.</p>
+   <p><em>media queries</em> provides the query for the change of a style sheet or the control of resource loadings according to the condition of media feature.</p>
 
    <p>This specification extends some media features to media query reacted to zooming of a user agent or contents.</p>
    
@@ -249,18 +249,18 @@ class="content">Difference between existing features and zoom features</span></a
    <h2 class="heading settled" data-level="1" id="intro"><span class="secno">1. </span><span class="content">Introduction</span><a class="self-link" href="#intro"></a></h2>
 
 
-   <p>（＊＊＊＊＊ユースケースの章と重なる部分があるので、必要か＊＊＊＊＊）When change arises to the scale of contents by the zoom function which a user agent has, or change of CSS3 Transforms, media query with zoom media features can provide the responsible contents concerning zooming. In addition to control of a style sheet, the application to elements which can have media attributes such as <a href="http://www.w3.org/html/wg/drafts/html/master/semantics.html#the-source-element-when-used-with-the-picture-element">source</a> element etc. is also taken into consideration. </p>
+   <p>When scale of contents is changed by UA's zoom function or CSS3 Transforms, media query with zoom media features can provide the responsible contents concerning zooming. In addition to control of a style sheet, the application to elements which can have media attributes such as <a href="http://www.w3.org/html/wg/drafts/html/master/semantics.html#the-source-element-when-used-with-the-picture-element">source</a> element etc. is also taken into consideration. </p>
 
    <h2 class="heading settled" data-level="2" id="usecase"><span class="secno">2. </span><span class="content">Use case</span><a class="self-link" href="#usecase"></a></h2>
    <p><em>This section is non-normative.</em></p>
-   <p>It is essential for applications such as Mapping</a> and High-Resolution Photos which have interactive zooming functions.</p> 
-　<p> The zoom is implemented using a zoom function that is provided by UA level natively or by application level. There are two types of UA-level zoom functions: 1) <a href="http://www.w3.org/TR/cssom-view/#zooming">page zoom</a> which takes into account the size of initial viewport, and 2) <a href="http://www.w3.org/TR/cssom-view/#zooming">pinch zoom</a> which acts like a magnifying glass that doesn't affect the viewport. On the other hand, application-level zoom function controls a scale of coordinates for contents.</p>
+   <p>Interactive zooming function is essential for applications such as Mapping</a> and High-Resolution Photos which have interactive zooming functions.</p> 
+　<p> The zoom functionality is implemented using a zoom function that is provided by UA natively-level or by application level. There are two types of UA-level zoom functions: 1) <a href="http://www.w3.org/TR/cssom-view/#zooming">page zoom</a> which takes into account the size of initial viewport, and 2) <a href="http://www.w3.org/TR/cssom-view/#zooming">pinch zoom</a> which acts like a magnifying glass that doesn't affect the viewport. On the other hand, application-level zoom function controls a scale of coordinates for contents.</p>
    
-   <p>Moreover, contents provider may want to provide the most appropriate contents or styling according to zoom ratio changed by the user's zooming operation. Such functions are called <a href="https://en.wikipedia.org/wiki/Level_of_detail">'Level of Detail' (LoD)</a> and are conventionally popular. LoD is effective functionarity not only to provide information interactively from overview to detail but also to control the distribution of the detailed large size data. It is convenient for content providers that UA has a function which such LoD realizes without massive JS apps.</p>
-   <p>The function which controls styles and resources according to various environments which surrounds contents is offered as css media query and picture element etc. which used it.  It is considered that zoom shown here is also a kind of such environment. So, this specification prescribes a feature that control dynamic expression of content according to zoom by extending Media Queries.</p>
+   <p>Moreover, contents provider may want to provide the most appropriate contents or styling according to zoom ratio changed by the user's zooming operation. Such functions are called <a href="https://en.wikipedia.org/wiki/Level_of_detail">'Level of Detail' (LoD)</a> and conventionally popular. LoD is effective functionarity not only to provide information interactively from overview to detail but also to control the distribution of the detailed large size data. It is convenient for content providers that UA has a function that  realizes LoD without massive JS apps.</p>
+   <p>The function which controls styles and resources according to various environments surrounding contents is offered using css media query and picture element etc. It is considered that zoom shown here is also a kind of such environment. So, this specification prescribes a feature that control dynamic expression of content according to zoom by extending Media Queries.</p>
 
 <div class="example" id="example-28baa0e2a"><a class="self-link" href="#example-28baa0e2"></a>
-    This media query simply detects magnification (this zoom ratio is at least 2.0):
+    This media query simply detects magnification (if this zoom ratio is at least 2.0):
    <pre>@media (zoom >= 2.0)</pre>
 </div>
 
@@ -270,7 +270,7 @@ class="content">Difference between existing features and zoom features</span></a
 </div>
 
 <div class="example" id="example-28baa0e2c"><a class="self-link" href="#example-28baa0e2"></a>
-   For example, this media query expresses that style sheets are switched according to zoom ratio. img element is displayed in the case of (1.0 <= zoom < 2.0), but img element is displayed in the case of (2.0 <= zoom):
+   For example, this media query expresses that style sheets are switched according to zoom ratio. img element is displayed in the case of (1.0 <= zoom < 2.0), but img element is not displayed in the case of (2.0 <= zoom):
   <pre>
     &lt;html&gt;
       &lt;head&gt;
@@ -337,7 +337,7 @@ class="content">Difference between existing features and zoom features</span></a
 </div>
    <dl>
    <dd>
-    This specifies only layout of content at initial status rather than description according to interaction. And also, there are only mobile browsers but no desktop browsers supporting this.
+    This specifies only layout of content at initial status rather than expression according to interaction. And also, there are only mobile browsers supporting this, but no desktop browsers.
    </dd>
    <dd>
   <div class="example" id="example-28baa0e2"><a class="self-link" href="#example-28baa0e2"></a>
@@ -360,20 +360,21 @@ class="content">Difference between existing features and zoom features</span></a
    <h2 class="heading settled" data-level="4" id="zooming-behaviors"><span class="secno">4. </span><span class="content">Possible zooming types </span><a class="self-link" href="#zooming-behaviors"></a></h2>
 
 <p><em>This section is non normative.</em>
-<p> This chapter organizes possible zooming patterns provided by UA and web contents. UA may have a native function for zooming such as page zoom and pinch zoom. Also, CSS pixel size may not be same as the size of device pixel (dot), as it may appear  as devicePixelRatio. Additionally, web contents are sometimes nested with iframe element. The CSS pixel unit size in child document may differ from the CSS pixel unit size in parent document when CSS Transforms is applied to the contents in the documents. These parameters to change the size of contents are able to fall into the concept of "zoom".  The formula including these all parameters regarding zoom is indicated as below. This formula indicates relation between the dot size of device and the pixel size in the user coordinate of root element in the most descendant document.
+<p> This chapter organizes possible zooming patterns provided by UA and web contents. UA may have a native function for zooming such as page zoom and pinch zoom. Also, CSS pixel size may not be same as the size of device pixel (dot), as it may appear  as devicePixelRatio. Additionally, web contents may be sometimes nested with iframe element. The CSS pixel unit size in child document may differ from the CSS pixel unit size in parent document when CSS Transforms is applied to the contents in the documents. These parameters to change the size of contents are able to fall into the concept of "zoom".  The formula including these all parameters regarding zoom is indicated as below. This formula indicates relation between the dot size of device and the pixel size in the user coordinate of root element in the most descendant document.
 </p>
 
 <p>
-<code>deviceDotSize = resolution[dppx] * PinchZoom * DocumentScale(child) * .... * DocumentScale(this) * contentSize</code>
+<code>deviceDotSize = resolution[dppx] * PinchZoom * DocumentScale(root's child) * .... * DocumentScale(this) * contentSize</code>
 </p>
 <p>
 <code>resolution[dppx] = nativeResolution * PageZoom</code>
 </p>
 
 <p>
-	This picture shows the configuration of UA and its contents which the above-mentioned formula assumes. 
-	<img src="images/zoom1.png"/>
+	This picture shows the configuration of UA and its contents which the above-mentioned formula assumes. <br>
+<img src="images/zoom1.png"/>
 </p>
+
 
 <p>
 Each variable number is described as below. The variables are defined as scalar value.
@@ -387,11 +388,11 @@ Each variable number is described as below. The variables are defined as scalar 
  <dt>PinchZoom</dt>
  <dd>This is a value of <a href="http://dev.w3.org/csswg/cssom-view/#zooming">pinch  zoom</a> prescribed in <a href="#biblio-cssom-view">[CSSOM-VIEW]</a>.
  <dt>DocumentScale</dt>
- <dd>This is a value of scale given by transform to child's content of an element for embedded content (<a href="http://www.w3.org/TR/html5/embedded-content-0.html">HTMLEmbedded Content</a>, <a href="http://www.w3.org/TR/SVG2/embedded.html">SVG Embedded Content</a>) such as iframe, if contents targeted by media queries are nested with an embedded content element. Whole scale value is calculated by multiplying each scale in each nest.  Let DocumentScale(child) be a scale given by transform from a root document to a child document. Let DocumentScale(this) be a scale given by transform from a parent document of the descendant document (called this) to the descendant document.
+ <dd>This is a value of scale given by transform to child's content nested by an element for embedded content such as iframe (<a href="http://www.w3.org/TR/html5/embedded-content-0.html">HTMLEmbedded Content</a>, <a href="http://www.w3.org/TR/SVG2/embedded.html">SVG Embedded Content</a>), if contents targeted by media queries are nested with an embedded content element. Whole scale value is calculated by multiplying each scale in each nest.  Let DocumentScale(root's child) be a scale given by transform from a root document to a child document. Let DocumentScale(this) be a scale given by transform from a parent of the most descendant document (called this) to the most descendant document.
  </dd>
  
  <dt>nativeResolution</dt>
- <dd>This is a value of resolution in a condition that PageZoom is 1.0.</dd>
+ <dd>This is a value of resolution in a condition in PageZoom of 1.0.</dd>
  
  <dt>deviceDotSize</dt>
  <dd>This is a value of size of device native pixel in 'dot' unit system.</dd>
@@ -405,7 +406,7 @@ Each variable number is described as below. The variables are defined as scalar 
 Transform matrix (<a href="#biblio-css-transforms">[CSS-TRANSFORMS]</a>) from parent's coorditnate system to child's coordinate system is given by <a href="http://www.w3.org/TR/css3-transforms/#current-transformation-matrix-ctm">CTM</a> of an embedded content element in parent content and implicit transformation in <a href="http://www.w3.org/TR/SVG2/coords.html#EstablishingANewSVGViewport">viewport establishment</a> process in <a href="#svg2">[SVG2]</a>. The value of <a href="http://svg2.mbsrv.net/devinfo/devstd/CSS_Transforms_Diff/css3Transforms_tmp/css-transforms-2_tmp/#scale">scale</a> (<a href="#biblio-css-transforms-2">[CSS-TRANSFORMS-2]</a>) is given by the transform matrix.
 </p>
 <p>
-transform property can be given to child element of document's root element in HTML and SVG. 
+transform property can be given to child elements of document's root element in HTML and SVG. 
 However, DocumentScale is absolutely a value given by transform to parent document's root element. Because media qureies takes into account only external condition of the document, but not internal condition of the document.
 </p>
 
@@ -484,20 +485,20 @@ However, DocumentScale is absolutely a value given by transform to parent docume
 <h4>Use cases of each zoom type</h4>
 <dl>
 <dt>'zoom' </dt>
-<dd>The case that styles and contents are provided according to pinch zoom gesture provided by UA native functionality. </dd>
+<dd>The case that styles and contents are provided according to pinch zoom gesture using UA native functionality. </dd>
 <dt>'zoom-dot'</dt>
-<dd>The case that styles and contents are provided with reflecting the devicePixelRatio such as Retina display in addition to 'zoom'. </dd>
+<dd>The case that styles and contents are provided with reflecting the devicePixelRatio  of the device with such as Retina display in addition to 'zoom'. </dd>
 <dt>'document-zoom'</dt>
 <dd>（＊＊＊＊＊説明が必要＊＊＊＊＊）</dd>
 <dt>'document-zoom-dot'</dt>
 <dd>（＊＊＊＊＊説明が必要＊＊＊＊＊）</dd>
-<dt>'window-scale'</dt>
-<dd>The case that styles and contents are provided according to scale of CSS Transforms on contents imported by iframe and img element, but independing on pinch zoom gesture provided by UA native functionality.
-</dd>
 <dd><p class="note" role="note">Note: From the viewpoint of mapping use case, "document-zoom" is better rather than this "window-scale".</p>
 </dd>
+<dt>'window-scale'</dt>
+<dd>The case that styles and contents are provided according to scale of CSS Transforms on contents imported by iframe and img element, but independing on pinch zoom provided by UA native functionality.
+</dd>
 <dt>'document-scale'</dt>
-<dd></dd>
+<dd>（＊＊＊＊＊説明が必要＊＊＊＊＊）</dd>
 </dl>
 
    <h2 class="heading settled" data-level="5" id="zoom-media-features"><span class="secno">5. </span><span class="content">Zoom media features </span><a class="self-link" href="#zoom-media-features"></a></h2>
@@ -512,7 +513,7 @@ Zoom media features are prescribed as below based on the formula in a previous s
    <span class="label">Accepts min/max prefixes:</span> yes<br>
   </div>
   
-  <p>The<code class="css">zoom</code> media feature corresponds to <a href="https://drafts.csswg.org/cssom-view/#zooming"><code>pinch zoom</code></a> described on <a href="#biblio-cssom-view">[CSSOM VIEW]</a>. (This naming of this feature is to ensure consitency with <a href="http://www.w3.org/TR/css-device-adapt/#the-lsquozoomrsquo-property"><code class="css">zoom</code></a>)
+  <p>The<code class="css">zoom</code> media feature corresponds to <a href="https://drafts.csswg.org/cssom-view/#zooming"><code>pinch zoom</code></a> described on <a href="#biblio-cssom-view">[CSSOM VIEW]</a>. (This naming of this feature is to ensure consitency with <a href="http://www.w3.org/TR/css-device-adapt/#the-lsquozoomrsquo-property"><code class="css">zoom</code></a> on [CSS-DEVICE-ADAPT].)
 </p>
 
 <div class="example" id="example-28baa0e2"><a class="self-link" href="#example-28baa0e2"></a>
@@ -527,7 +528,7 @@ For example, this media query expresses that a style sheet is usable when the zo
    <span class="label">Accepts min/max prefixes:</span> yes<br>
   </div>
   <p>
-  The 'document-zoom' media feature corresponds to <code>PinchZoom * (embedContentScale(root)) * .... * (embedContentScale(parent))</code>. This means zooming to window of UA in CSS Pixel coordinates of document targetted by media queries.UA native zooming is reflected to this features.
+  The 'document-zoom' media feature corresponds to <code> (PinchZoom * DocumentScale(root's child) * .... * DocumentScale(this))</code>. This means zooming to window of UA in CSS Pixel coordinates of document targetted by media queries.UA native pinch zooming is reflected to this features.
   </p>
   
 <div class="example" id="example-28baa0e2"><a class="self-link" href="#example-28baa0e2"></a>
