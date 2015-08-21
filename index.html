@@ -397,7 +397,7 @@ Each variable number is described as below. The variables are defined as scalar 
  <dt>deviceDotSize</dt>
  <dd>This is a value of size of device native pixel in 'dot' unit system.</dd>
  <dt>contentSize</dt>
- <dd>This is a value of size of CSS pixel in a content's coordinate system. This value is able to be scaled with transform function.</dd> 
+ <dd>This is a value of size of CSS pixel in a content's coordinate system. This value is able to be scaled with transform function.＜＊＊＊＊＊4.2章のUser Coordinate's sizeとの用語の整合性が気になる。4.2章の方の用語を直したほうがよいかも。＊＊＊＊＊＞</dd> 
 </dl>
 
    <h3 class="heading settled" data-level="4.1" id="embed-content-scale"><span class="secno">4.1 </span><span class="content">Scale of Embedded Content</span><a class="self-link" href="#embed-content-scale"></a></h3>
@@ -490,10 +490,10 @@ However, DocumentScale is absolutely a value given by transform to parent docume
 <dd>The case that styles and contents are provided with reflecting the devicePixelRatio  of the device with such as Retina display in addition to 'zoom'. </dd>
 <dt>'document-zoom'</dt>
 <dd>（＊＊＊＊＊説明が必要＊＊＊＊＊）</dd>
-<dt>'document-zoom-dot'</dt>
-<dd>（＊＊＊＊＊説明が必要＊＊＊＊＊）</dd>
 <dd><p class="note" role="note">Note: From the viewpoint of mapping use case, "document-zoom" is better rather than this "window-scale".</p>
 </dd>
+<dt>'document-zoom-dot'</dt>
+<dd>（＊＊＊＊＊説明が必要＊＊＊＊＊）</dd>
 <dt>'window-scale'</dt>
 <dd>The case that styles and contents are provided according to scale of CSS Transforms on contents imported by iframe and img element, but independing on pinch zoom provided by UA native functionality.
 </dd>
