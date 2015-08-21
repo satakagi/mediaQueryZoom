@@ -317,15 +317,44 @@ class="content">Difference between existing features and zoom features</span></a
    <a href=http://www.w3.org/TR/mediaqueries-4/#resolution> <code class="css">resolution</code> media features</a> 
   </li>
   <dl>
+    <dd>
     resolution media feature takes into account the page zoom, but regards the pinch zoom as 1.0.
+    </dd>
+    <dd>
+      <div class="example" id="example-7fbf34fb"><a class="self-link" href="#example-7fbf34fb"></a>
+		This media query simply detects “high-resolution” screens
+		(those with a hardware pixel to CSS <span class="css">px</span> ratio of at least 2):
+
+
+    <pre>@media (resolution >= 2dppx)</pre>
+    
+	
+   </div>
+   </dd>
   </dl>
-  <br><br>
   <li>
-    <a href=http://www.w3.org/TR/css-device-adapt/#the-lsquozoomrsquo-property> <code class="css">zoom</code> property at @viewport </a>
+    <a href=http://www.w3.org/TR/css-device-adapt/#the-lsquozoomrsquo-property> <code class="css">zoom</code> as viewport property</a>
   </li>
+</div>
    <dl>
+   <dd>
     This specifies only layout of content at initial status rather than description according to interaction. And also, there are only mobile browsers but no desktop browsers supporting this.
-    </dl>
+   </dd>
+   <dd>
+  <div class="example" id="example-28baa0e2"><a class="self-link" href="#example-28baa0e2"></a>
+   <pre>
+     This meta element: 
+     &lt;meta name="viewport" content="initial-scale=1.0"&gt;
+     
+     Translate into: 
+     
+     @viewport {
+       zoom: 1.0;
+       width: auto;
+     }
+  </pre>
+  </dd>    
+   </dl>
 </ul>
 
    <h2 class="heading settled" data-level="4" id="zooming-behaviors"><span class="secno">4. </span><span class="content">Possible zooming types </span><a class="self-link" href="#zooming-behaviors"></a></h2>
