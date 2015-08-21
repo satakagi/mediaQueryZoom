@@ -468,6 +468,10 @@ Zoom media features are prescribed as below based on the formula in a previous s
   <p>The<code class="css">zoom</code> media feature corresponds to <a href="https://drafts.csswg.org/cssom-view/#zooming"><code>pinch zoom</code></a> described on <a href="#biblio-cssom-view">[CSSOM VIEW]</a>. (This naming of this feature is to ensure consitency with <a href="http://www.w3.org/TR/css-device-adapt/#the-lsquozoomrsquo-property"><code class="css">zoom</code></a>)
 </p>
 
+<div class="example" id="example-28baa0e2"><a class="self-link" href="#example-28baa0e2"></a>
+＜＊＊＊＊＊説明の追記が必要＊＊＊＊＊＞
+   <pre>@media (min-zoom: 2.0) { ... }</pre>
+</div>
 
   <h3 class="heading settled" data-level="5.2" id="document-zoom"><span class="secno">5.2 </span><span class="content">document-zoom</span><a class="self-link" href="#document-zoom"></a></h3>
 
@@ -478,6 +482,11 @@ Zoom media features are prescribed as below based on the formula in a previous s
   <p>
   The 'document-zoom' media feature corresponds to <code>PinchZoom * (embedContentScale(root)) * .... * (embedContentScale(parent))</code>. This means zooming to window of UA in CSS Pixel coordinates of document targetted by media queries.UA native zooming is reflected to this features.
   </p>
+  
+<div class="example" id="example-28baa0e2"><a class="self-link" href="#example-28baa0e2"></a>
+＜＊＊＊＊＊説明の追記が必要＊＊＊＊＊＞
+   <pre>@media (min-document-zoom: 2.0) { ... }</pre>
+</div>
 
 <br><br>
 <h2 class="no-num heading settled" id="acknowledgments"><span class="content">Acknowledgments</span><a class="self-link" href="#acknowledgments"></a></h2>
