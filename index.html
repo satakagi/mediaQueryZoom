@@ -277,7 +277,7 @@ class="content">Difference between existing features and zoom features</span></a
         &lt;style type="text/css"&gt;
           @media (min-zoom: 1.0) {
             .content {
-              display: none;
+              display: inline;
             }
           }
           @media (min-zoom: 2.0) {
@@ -288,7 +288,7 @@ class="content">Difference between existing features and zoom features</span></a
         &lt;/style&gt;
       &lt;/head&gt;
       &lt;body&gt;
-        &lt;iframe class="content" src="child1.svg"/&gt;
+        &lt;img class="content" src="sample.jpg"/&gt;
       &lt;/body&gt;
     &lt;/html&gt;
   </pre>
@@ -361,6 +361,49 @@ transform property can be given to child element of document root in CSS and SVG
 However, DocumentScale absolutely is a value based on transformation of document root to parent document.（＊＊＊＊＊←このセンテンスの意味がわからない（ここに示すDocumentScaleは、あくまでも親の文書に対する、そのドキュメントルートのtransformationに基づく値でしかありません。）＊＊＊＊＊） This is caused by characteristics in which media queries take into account only external condition outside the document including elements given the queries.
 （＊＊＊＊＊←この文は、理解が難しい＊＊＊＊＊）
 </p>
+
+
+<div class="example" id="example-28baa0e2"><a class="self-link" href="#example-28baa0e2"></a>
+  The following parent iframe is displayed, even though min-zoom media feature of 2.0 is set and scale transform of 2.0 is applied to the parent iframe. On the other hand, the following child iframe is not displayed since the scale transform of 2.0 at the parent document affects to the zoom condition at the child document.
+  <dt>parent.html</dt>
+  <pre>
+    &lt;html&gt;
+      &lt;head&gt;
+        &lt;style type="text/css"&gt;
+          @media (min-zoom: 2.0) {
+            .content {
+              display: none;
+            }
+          }
+          .content {
+          	  transform: scale(2.0);
+          }
+        &lt;/style&gt;
+      &lt;/head&gt;
+      &lt;body&gt;
+        &lt;iframe id="parent" class="content" src="child.html" /&gt;
+      &lt;/body&gt;
+    &lt;/html&gt;
+  </pre>
+  
+  <dt>child.html</dt>
+  <pre>
+    &lt;html&gt;
+      &lt;head&gt;
+        &lt;style type="text/css"&gt;
+          @media (min-zoom: 2.0) {
+            .content {
+              display: none;
+            }
+          }
+        &lt;/style&gt;
+      &lt;/head&gt;
+      &lt;body&gt;
+        &lt;iframe id="child" class="content" src="sample.jpg" /&gt;
+      &lt;/body&gt;
+    &lt;/html&gt;
+  </pre>
+</div>
 
    <h3 class="heading settled" data-level="4.2" id="possible-zoom-listings"><span class="secno">4.2 </span><span class="content">Possible zoom listings</span><a class="self-link" href="#possible-zoom-listings"></a></h3>
 
