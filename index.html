@@ -397,7 +397,7 @@ Each variable number is described as below. The variables are defined as scalar 
  <dt>deviceDotSize</dt>
  <dd>This is a value of size of device native pixel in 'dot' unit system.</dd>
  <dt>contentSize</dt>
- <dd>This is a value of size of CSS pixel in a content's coordinate system. This value is able to be scaled with transform function.＜＊＊＊＊＊4.2章のUser Coordinate's sizeとの用語の整合性が気になる。4.2章の方の用語を直したほうがよいかも。＊＊＊＊＊＞</dd> 
+ <dd>This is a value of size of CSS pixel in a content's coordinate system. This value is able to be scaled with transform function.</dd> 
 </dl>
 
    <h3 class="heading settled" data-level="4.1" id="embed-content-scale"><span class="secno">4.1 </span><span class="content">Scale of Embedded Content</span><a class="self-link" href="#embed-content-scale"></a></h3>
@@ -457,7 +457,7 @@ However, DocumentScale is absolutely a value given by transform to parent docume
 
 <table border=0 align="center" >
 <tr>
-  <th class="mqz_top">Device's dot size </th><th>=</th><th>resolution </th><th>* </th><th>PinchZoom </th><th>* </th><th>DocumentScale(child) </th><th>* .... * </th><th>DocumentScale(this) </th><th>* </th><th class="mqz_bottom">User coordinate's size</th>
+  <th class="mqz_top">Device's dot size </th><th>=</th><th>resolution </th><th>* </th><th>PinchZoom </th><th>* </th><th>DocumentScale(child) </th><th>* .... * </th><th>DocumentScale(this) </th><th>* </th><th class="mqz_bottom">contentSize</th>
 </tr>
 <tr>
   <td class="mqz_top" colspan=3> Window's native CSS pxel size </td><td>= </td><td class="mqz_feature">'zoom' </td><td>* </td><td class="mqz_bottom" colspan=5>Root document's css pixel size</td>
@@ -466,18 +466,18 @@ However, DocumentScale is absolutely a value given by transform to parent docume
   <td class="mqz_top">Device's dot size </td><td>=</td><td colspan=3 class="mqz_feature">'zoom-dot' </td><td>* </td><td class="mqz_bottom" colspan=5>Root document's css pixel size</td>
 </tr>
 <tr>
-  <td class="mqz_top" colspan=3> Window's native CSS pxel size </td><td>= </td><td colspan=5 class="mqz_feature">'document-zoom' </td><td>* </td><td class="mqz_bottom">User coordinate's size</td>
+  <td class="mqz_top" colspan=3> Window's native CSS pxel size </td><td>= </td><td colspan=5 class="mqz_feature">'document-zoom' </td><td>* </td><td class="mqz_bottom">contentSize</td>
 </tr>
 <tr>
-  <td class="mqz_top">Device's dot size </td><td>=</td><td colspan=7 class="mqz_feature">'document-zoom-dot' </td><td>* </td><td class="mqz_bottom">User coordinate's size</td>
-</tr>
-
-<tr>
-  <td class="mqz_top" colspan=5>Windows's CSS pixel size </td><td>=</td><td colspan=3 class="mqz_feature">'window-scale' </td><td>* </td><td class="mqz_bottom">User coordinate's size</td>
+  <td class="mqz_top">Device's dot size </td><td>=</td><td colspan=7 class="mqz_feature">'document-zoom-dot' </td><td>* </td><td class="mqz_bottom">contentSize</td>
 </tr>
 
 <tr>
-  <td class="mqz_top" colspan=7>Parent's CSS pixel size </td><td>=</td><td class="mqz_feature">'document-scale' </td><td>* </td><td class="mqz_bottom">User coordinate's size</td>
+  <td class="mqz_top" colspan=5>Windows's CSS pixel size </td><td>=</td><td colspan=3 class="mqz_feature">'window-scale' </td><td>* </td><td class="mqz_bottom">contentSize</td>
+</tr>
+
+<tr>
+  <td class="mqz_top" colspan=7>Parent's CSS pixel size </td><td>=</td><td class="mqz_feature">'document-scale' </td><td>* </td><td class="mqz_bottom">contentSize</td>
 </tr>
 
 </table>
@@ -490,12 +490,12 @@ However, DocumentScale is absolutely a value given by transform to parent docume
 <dd>The case that styles and contents are provided with reflecting the devicePixelRatio  of the device with such as Retina display in addition to 'zoom'. </dd>
 <dt>'document-zoom'</dt>
 <dd>The case that styles and contents are provided according to both scale of CSS Transforms on contents and pinch zoom provided by UA native functionality. However, resolution is not considered. Accordingly, this realizes the contents responded to both pinch zoom of UA, and transforms of web apps except for resolution. </dd>
-<dd><p class="note" role="note">Note: stakagi: From the viewpoint of mapping use case, I think "document-zoom" is better rather than this "window-scale" because LoD works even by UA native's pinch zoom.</p>
+<dd><p class="note" role="note">Note: stakagi: From the viewpoint of mapping use case, I think this "document-zoom" is better rather than "window-scale" because LoD works even by UA native pinch zoom.</p>
 </dd>
 <dt>'document-zoom-dot'</dt>
 <dd>The case which responds also to resolution in addition to the above. It may be useful in order to realize the contents even responded to the resolution of a device and page zoom. </dd>
 <dt>'window-scale'</dt>
-<dd>The case that styles and contents are provided according to total scale of CSS Transforms on nested documents imported by iframe and img element, but independing on pinch zoom provided by UA native functionalities. In conventional zoomable Web Apps, such a function is provided mostly.</dd>
+<dd>The case that styles and contents are provided according to total scale of CSS Transforms on nested documents imported by iframe and img element, but independing on pinch zoom provided by UA native functionalities. In conventional zoomable Web Apps, such a function is implemented mostly.</dd>
 
 <dt>'document-scale'</dt>
 <dd>Differ from the above, it is the case that styles and contents are provided according to the scale on the single hierarchy.</dd>
@@ -541,6 +541,7 @@ For example, this media query expresses that a style sheet is usable when the zo
 
   <p>This specification is the product of the W3C Working Group on Cascading
    Style Sheets.</p>
+   <p>We would like to sincerely thank Tomoaki Konno and Brian Birtles to acknowledge their contributions to this work.</p>
 
   <h2 class="no-num heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
   
