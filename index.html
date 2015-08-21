@@ -128,7 +128,7 @@ a#bikeshed.pending [fill=blue] { animation-name: fill; } --></style></head>
    <h1 class="p-name no-ref" id="title">Zoom Features for Media Queries</h1>
   
    <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Unofficial Draft,
-    <time class="dt-updated" datetime="2015-08-15">15 August 2015</time></span></h2>
+    <time class="dt-updated" datetime="2015-08-15">22 August 2015</time></span></h2>
   
    <div data-fill-with="spec-metadata">
     <dl>
@@ -578,8 +578,8 @@ For example, this media query expresses that a style sheet is usable when the zo
 
    <div class="issue">The translation into English from Japanese is required.</div>
    <div class="issue">The review for checking errors of terminological definitions and interpretation of concepts is required. </div>
-   <div class="issue">device pixel ratioって、本当に小さいほうを取るでいいの？ sqrt(w * h)のほうが、数学的には正しいように思う。</div>
-   <div class="issue">用語が統一されていない。zoom [CSS-DEVOCE-ADAPT]が、pinch zoom [CSSOM VIEW]と対応。'scale'が[CSS-TRANSFORMS-2]などでは使われているが、[CSSOM VIEW]他では、'zoom'が使われている。</div>
+   <div class="issue">Is it nice as device pixel ratio to take the smaller value of the values of height and width?  It may also be appropriate to use sqrt (w * h). </div>
+   <div class="issue">It seems that the term is not unified within [CSS-DEVOCE-ADAPT] and [CSSOM VIEW].  'zoom' in [CSS-DEVOCE-ADAPT] corresponds to 'pinch zoom' in [CSSOM VIEW]. </div>
    <div class="note">Is resolution in dppx devicePixelRatio? If so, shoud be link them in appropriate specs.</div>
 
   </div>
