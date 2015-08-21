@@ -489,16 +489,16 @@ However, DocumentScale is absolutely a value given by transform to parent docume
 <dt>'zoom-dot'</dt>
 <dd>The case that styles and contents are provided with reflecting the devicePixelRatio  of the device with such as Retina display in addition to 'zoom'. </dd>
 <dt>'document-zoom'</dt>
-<dd>（＊＊＊＊＊説明が必要＊＊＊＊＊）</dd>
-<dd><p class="note" role="note">Note: From the viewpoint of mapping use case, "document-zoom" is better rather than this "window-scale".</p>
+<dd>The case that styles and contents are provided according to both scale of CSS Transforms on contents and pinch zoom provided by UA native functionality. However, resolution is not considered. Accordingly, this realizes the contents responded to both pinch zoom of UA, and transforms of web apps except for resolution. </dd>
+<dd><p class="note" role="note">Note: stakagi: From the viewpoint of mapping use case, I think "document-zoom" is better rather than this "window-scale" because LoD works even by UA native's pinch zoom.</p>
 </dd>
 <dt>'document-zoom-dot'</dt>
-<dd>（＊＊＊＊＊説明が必要＊＊＊＊＊）</dd>
+<dd>The case which responds also to resolution in addition to the above. It may be useful in order to realize the contents even responded to the resolution of a device and page zoom. </dd>
 <dt>'window-scale'</dt>
-<dd>The case that styles and contents are provided according to scale of CSS Transforms on contents imported by iframe and img element, but independing on pinch zoom provided by UA native functionality.
-</dd>
+<dd>The case that styles and contents are provided according to total scale of CSS Transforms on nested documents imported by iframe and img element, but independing on pinch zoom provided by UA native functionalities. In conventional zoomable Web Apps, such a function is provided mostly.</dd>
+
 <dt>'document-scale'</dt>
-<dd>（＊＊＊＊＊説明が必要＊＊＊＊＊）</dd>
+<dd>Differ from the above, it is the case that styles and contents are provided according to the scale on the single hierarchy.</dd>
 </dl>
 
    <h2 class="heading settled" data-level="5" id="zoom-media-features"><span class="secno">5. </span><span class="content">Zoom media features </span><a class="self-link" href="#zoom-media-features"></a></h2>
