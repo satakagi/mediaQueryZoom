@@ -128,7 +128,7 @@ a#bikeshed.pending [fill=blue] { animation-name: fill; } --></style></head>
    <h1 class="p-name no-ref" id="title">Zoom Features for Media Queries</h1>
   
    <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Unofficial Draft,
-    <time class="dt-updated" datetime="2015-08-15">22 August 2015</time></span></h2>
+    <time class="dt-updated" datetime="2015-08-15">26 August 2015</time></span></h2>
   
    <div data-fill-with="spec-metadata">
     <dl>
@@ -232,8 +232,8 @@ class="content">Difference between existing features and zoom features</span></a
     
     <li><a href="#zoom-media-features"><span class="secno">5</span> <span class="content">Zoom media features</span></a>
     <ul class="toc">
-     <li><a href="#zoom"><span class="secno">5.1</span><span class="content">zoom</span></a>
-     <li><a href="#document-zoom"><span class="secno">5.2</span><span class="content">document-zoom</span></a>
+     <!--<li><a href="#zoom"><span class="secno">5.1</span><span class="content">zoom</span></a>-->
+     <li><a href="#document-zoom"><span class="secno">5.1</span><span class="content">document-zoom</span></a>
     </ul>
     
     <li><a href="#acknowledgments"><span class="secno"></span> <span class="content">Acknowledgments</span></a>
@@ -460,7 +460,7 @@ However, DocumentScale is absolutely a value given by transform to parent docume
 
 <table border=0 align="center" >
 <tr>
-  <th class="mqz_top">Device's dot size </th><th>=</th><th>resolution </th><th>* </th><th>PinchZoom </th><th>* </th><th>DocumentScale(child) </th><th>* .... * </th><th>DocumentScale(this) </th><th>* </th><th class="mqz_bottom">contentSize</th>
+  <th class="mqz_top">Device's dot size </th><th>=</th><th>resolution </th><th>* </th><th>PinchZoom </th><th>* </th><th>DocumentScale(root's child) </th><th>* .... * </th><th>DocumentScale(this) </th><th>* </th><th class="mqz_bottom">contentSize</th>
 </tr>
 <tr>
   <td class="mqz_top" colspan=3> Window's native CSS pxel size </td><td>= </td><td class="mqz_feature">'zoom' </td><td>* </td><td class="mqz_bottom" colspan=5>Root document's css pixel size</td>
@@ -508,7 +508,7 @@ However, DocumentScale is absolutely a value given by transform to parent docume
 <p>
 Zoom media features are prescribed as below based on the formula in a previous section. These features are specified by a single term or the combination of terms in the above formula. 
 </p>
-
+  <!--
   <h3 class="heading settled" data-level="5.1" id="zoom"><span class="secno">5.1 </span><span class="content">zoom</span><a class="self-link" href="#zoom"></a></h3>
    
   <div class="media-feature"><span class="label">Value:</span> <a href="http://www.w3.org/TR/css3-values/#percentage">&lt;percentage&gt;</a>,<a href="http://www.w3.org/TR/css3-values/#number-value">&lt;numnber&gt;</a><br>
@@ -523,8 +523,8 @@ Zoom media features are prescribed as below based on the formula in a previous s
 For example, this media query expresses that a style sheet is usable when the zoom ratio based on <code>zoom</code> is greater than 2.0:
    <pre>@media (min-zoom: 2.0) { ... }</pre>
 </div>
-
-  <h3 class="heading settled" data-level="5.2" id="document-zoom"><span class="secno">5.2 </span><span class="content">document-zoom</span><a class="self-link" href="#document-zoom"></a></h3>
+  -->
+  <h3 class="heading settled" data-level="5.1" id="document-zoom"><span class="secno">5.1 </span><span class="content">document-zoom</span><a class="self-link" href="#document-zoom"></a></h3>
 
   <div class="media-feature"><span class="label">Value:</span> <a href="http://www.w3.org/TR/css3-values/#percentage">&lt;percentage&gt;</a>,<a href="http://www.w3.org/TR/css3-values/#number-value">&lt;number&gt;</a><br>
    <span class="label">Applies to:</span> visual and tactile media types<br>
